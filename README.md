@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# Luminescent ✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collection of premium, highly-polished, and visually stunning React UI components tailored specifically for modern dark-mode applications.
 
-Currently, two official plugins are available:
+Luminescent is built with an obsession for detail, focusing on smooth micro-animations, mathematically precise glowing effects, and rich, vibrant aesthetics that instantly elevate any user interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- **Mathematical Precision:** Utilizes advanced modern CSS techniques (`@property`, `padding-box` clipping) to create flawless, infinitely scalable glowing borders without bleed or stretch.
+- **Dynamic Interactions:** Components feature fluid sliding indicators, discrete fades, and magnetic hover effects powered by Framer Motion.
+- **Premium Aesthetics:** Curated dark-mode color palettes featuring rich blacks (`#050505`), glassmorphism, and vibrant gradient blooms.
+- **Drop-in Ready:** Built with React and Tailwind CSS. Just copy the component and its dependencies into your codebase.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Components Included
 
-## Expanding the ESLint configuration
+* **TextField:** Features a hyper-smooth, animated "single stream" light gradient that actively orbits the input border while focused.
+* **SegmentedControl:** A pill-shaped layout control featuring a beautifully animated, sliding active indicator that snaps seamlessly between options.
+* **RadioGroup:** Offers both vertical and horizontal layouts, supporting customizable light variants (slide or fade) to indicate active states.
+* **Button:** Highly stylized primary and secondary buttons featuring peachy, ambient blooms and deeply interactive hover states.
+* **Divider:** A gorgeous visual separator that emits a soft, fading glow from the edges or center to break up content beautifully.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technology Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React** (v19)
+- **Tailwind CSS** (v3.4)
+- **Framer Motion** (for complex fluid layout animations)
+- **Vite** & **Storybook** (for component development and preview)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📖 Viewing the Playground
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Luminescent uses Storybook to showcase all components in an interactive, dark-themed playground.
+
+```bash
+# Install dependencies
+npm install
+
+# Start the interactive Storybook playground
+npm run storybook
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project includes a zero-configuration `netlify.toml` file. To deploy the interactive Storybook playground to Netlify:
+1. Connect this repository to your Netlify dashboard.
+2. Netlify will automatically build the static Storybook using `npm run build-storybook` and serve it from the `storybook-static` directory.
