@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Box, Shield, Hexagon, Circle } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
@@ -8,22 +8,40 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export interface FloatingMenuProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FloatingMenuItem {
+  id: string;
+  label?: string;
+  href?: string;
+  icon?: React.ElementType;
+}
+
+export interface FloatingMenuProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   glowColor?: 'white' | 'peach';
   glowPosition?: 'top' | 'bottom';
+  items?: FloatingMenuItem[];
+  activeId?: string;
+  onChange?: (id: string) => void;
 }
 
 export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
-  ({ className, glowColor = 'peach', glowPosition = 'bottom', ...props }, ref) => {
-    const [activeIcon, setActiveIcon] = useState<number | null>(0);
+  ({ className, glowColor = 'peach', glowPosition = 'bottom', items, activeId: propActiveId, onChange, ...props }, ref) => {
+    const [activeIcon, setActiveIcon] = useState<string | null>(propActiveId || (items ? items[0]?.id : '0'));
 
-    const icons = [
-      { id: 0, Icon: Sparkles },
-      { id: 1, Icon: Box },
-      { id: 2, Icon: Shield },
-      { id: 3, Icon: Hexagon },
-      { id: 4, Icon: Circle },
+    useEffect(() => {
+      if (propActiveId !== undefined) {
+        setActiveIcon(propActiveId);
+      }
+    }, [propActiveId]);
+
+    const defaultItems: FloatingMenuItem[] = [
+      { id: '0', icon: Sparkles },
+      { id: '1', icon: Box },
+      { id: '2', icon: Shield },
+      { id: '3', icon: Hexagon },
+      { id: '4', icon: Circle },
     ];
+
+    const displayItems = items || defaultItems;
 
     // Map 'peach' to #FFCBA4 and 'white' to #FFFFFF
     const glowHex = glowColor === 'peach' ? '#FFCBA4' : '#FFFFFF';
@@ -55,19 +73,12 @@ export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
             }}
           />
 
-          {/* Rest of the icons map... */}
-          {icons.map((item) => {
+          {displayItems.map((item) => {
             const isActive = activeIcon === item.id;
-            return (
-              <motion.button
-                key={item.id}
-                onClick={() => setActiveIcon(item.id)}
-                className={cn(
-                  "relative flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-300 outline-none",
-                  isActive ? "text-[#1a0f0a]" : "text-neutral-500 hover:text-neutral-300"
-                )}
-                style={{ WebkitTapHighlightColor: "transparent" }}
-              >
+            const Icon = item.icon;
+            
+            const content = (
+              <>
                 {isActive && (
                   <motion.div
                     layoutId="activeIndicator"
@@ -127,9 +138,56 @@ export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
                     )} />
                   </motion.div>
                 )}
-                <item.Icon className="w-5 h-5 z-10 relative" />
+                {Icon && <Icon className={cn("w-5 h-5 z-10 relative", item.label && "mr-2")} />}
+                {item.label && <span className="z-10 relative text-sm font-medium">{item.label}</span>}
+              </>
+            );
+
+            const btnClass = cn(
+              "relative flex items-center justify-center h-10 rounded-full transition-colors duration-300 outline-none",
+              item.label ? "px-4" : "w-10",
+              isActive ? "text-[#1a0f0a]" : "text-neutral-500 hover:text-neutral-300"
+            );
+
+            const handleClick = (e: React.MouseEvent) => {
+              if (item.href) {
+                // If it's a link, we let the default behavior happen or handle it via a wrapper.
+                // We just update state.
+              } else {
+                e.preventDefault();
+              }
+              if (propActiveId === undefined) {
+                setActiveIcon(item.id);
+              }
+              onChange?.(item.id);
+            };
+
+            if (item.href) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={handleClick}
+                  className={btnClass}
+                  style={{ WebkitTapHighlightColor: "transparent" }}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            return (
+              <motion.button
+                key={item.id}
+                onClick={handleClick}
+                className={btnClass}
+                style={{ WebkitTapHighlightColor: "transparent" }}
+              >
+                {content}
               </motion.button>
-            )
+            );
           })}
         </div>
       </div>
