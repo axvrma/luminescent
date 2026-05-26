@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
 
@@ -63,8 +63,48 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         )}
         
+        <style dangerouslySetInnerHTML={{ __html: `
+          @property --angle {
+            syntax: "<angle>";
+            inherits: true;
+            initial-value: 0deg;
+          }
+          @keyframes spin-border {
+            to { --angle: 360deg; }
+          }
+        ` }} />
+
         {variant === "secondary" && (
           <>
+             {/* Unclipped Ambient Aura Container (Massive 50px overflow area to let blur spread infinitely) */}
+             <div 
+               className="absolute -inset-[50px] rounded-full pointer-events-none"
+               style={{
+                 padding: '50px',
+                 WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                 WebkitMaskComposite: 'xor',
+                 maskComposite: 'exclude',
+               }}
+             >
+               {/* Core Glow (Tight, bright atmospheric bleed) */}
+               <div 
+                 className="absolute inset-[50px] rounded-full opacity-100 blur-[6px] transition-opacity duration-500"
+                 style={{
+                   background: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,170,102,1) 320deg, #fffce0 360deg)`,
+                   animation: 'spin-border 3s linear infinite',
+                 }}
+               />
+
+               {/* Massive Ambient Aura (Free-flowing, wide atmospheric bleed) */}
+               <div 
+                 className="absolute inset-[50px] rounded-full opacity-80 group-hover:opacity-100 blur-[24px] transition-opacity duration-500"
+                 style={{
+                   background: `conic-gradient(from var(--angle), transparent 0deg 180deg, rgba(255,170,102,1) 300deg, #fffce0 360deg)`,
+                   animation: 'spin-border 3s linear infinite',
+                 }}
+               />
+             </div>
+
              {/* Subtle top bevel for secondary */}
              <div className="absolute inset-0 rounded-full border border-white/[0.04] pointer-events-none" />
              <div className="absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-100 group-active:opacity-100" />

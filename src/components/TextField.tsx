@@ -23,32 +23,43 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     `;
 
     const variants = {
-      peach: `conic-gradient(from var(--angle), transparent 0deg 270deg, rgba(255,170,102,0.4) 330deg, #fffce0 360deg)`,
-      comet: `conic-gradient(from var(--angle), transparent 0deg 180deg, rgba(249,115,22,0.6) 240deg, rgba(168,85,247,0.8) 300deg, rgba(59,130,246,0.9) 340deg, white 360deg)`,
-      light: `conic-gradient(from var(--angle), transparent 0deg 270deg, rgba(255,255,255,0.4) 330deg, white 360deg)`
-    };
-
-    const gradientBorder = variants[glowVariant];
-    const bgStyle = {
-      background: `linear-gradient(#030303, #030303) padding-box, ${gradientBorder} border-box`,
-      animation: 'spin-border 3s linear infinite'
+      peach: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,170,102,1) 320deg, #fffce0 360deg)`,
+      comet: `conic-gradient(from var(--angle), transparent 0deg 180deg, rgba(249,115,22,1) 240deg, rgba(168,85,247,1) 300deg, rgba(59,130,246,1) 340deg, white 360deg)`,
+      light: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,255,255,1) 320deg, white 360deg)`
     };
 
     return (
-      <div className={cn("relative flex w-full max-w-md group", containerClassName)}>
+      <div className={cn("relative flex w-full max-w-md group bg-[#030303] rounded-full", containerClassName)}>
         <style dangerouslySetInnerHTML={{ __html: propertyStyle }} />
         
-        {/* AMBIENT BLOOM (Blurred version of the border glow) */}
+        {/* Unclipped Ambient Aura Container (Massive 50px overflow area to let blur spread infinitely) */}
         <div 
-          className="absolute inset-0 rounded-full border-[2px] border-transparent pointer-events-none transition-opacity duration-1000 ease-out opacity-0 group-focus-within:opacity-100 blur-[8px]"
-          style={bgStyle}
-        />
+          className="absolute -inset-[50px] rounded-full pointer-events-none"
+          style={{
+            padding: '50px',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude',
+          }}
+        >
+          {/* Core Glow (Tight, bright atmospheric bleed) */}
+          <div 
+            className="absolute inset-[50px] rounded-full opacity-0 group-focus-within:opacity-100 blur-[6px] transition-opacity duration-700"
+            style={{
+              background: variants[glowVariant],
+              animation: 'spin-border 3s linear infinite',
+            }}
+          />
 
-        {/* SHARP BORDER GLOW */}
-        <div 
-          className="absolute inset-0 rounded-full border-[2px] border-transparent pointer-events-none transition-opacity duration-700 opacity-0 group-focus-within:opacity-100"
-          style={bgStyle}
-        />
+          {/* Massive Ambient Aura (Free-flowing, wide atmospheric bleed) */}
+          <div 
+            className="absolute inset-[50px] rounded-full opacity-0 group-focus-within:opacity-80 blur-[24px] transition-opacity duration-1000"
+            style={{
+              background: variants[glowVariant],
+              animation: 'spin-border 3s linear infinite',
+            }}
+          />
+        </div>
 
         {/* DEFAULT STATIC BORDER (when not focused) */}
         <div 
