@@ -12,7 +12,7 @@ export function Divider({
   orientation = 'vertical',
   intensity = 'medium',
   glowDirection = 'left',
-  color = '#8b5cf6', // Bright violet by default
+  color = '#ffaa66', // Peach glow by default
   className,
   ...props
 }: DividerProps) {

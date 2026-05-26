@@ -7,7 +7,7 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ className, containerClassName, glowVariant = 'light', ...props }, ref) => {
+  ({ className, containerClassName, glowVariant = 'peach', ...props }, ref) => {
     
     // Inject the CSS @property to allow smooth animation of the conic-gradient angle.
     // This perfectly replicates the mathematically precise padding-box / border-box technique.
