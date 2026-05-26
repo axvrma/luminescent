@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useRef } from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 export interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
-  code: string;
+  code?: string;
   language?: string;
+  lang?: string;
   glowVariant?: 'peach' | 'comet' | 'light';
   showLineNumbers?: boolean;
 }
 
 export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
-  ({ className, code, language = 'tsx', glowVariant = 'peach', showLineNumbers = false, ...props }, ref) => {
+  ({ className, code, language, lang, glowVariant = 'peach', showLineNumbers = false, children, ...props }, ref) => {
+    const activeLanguage = (language || lang || 'tsx') as any;
     const [copied, setCopied] = useState(false);
+    const preRef = useRef<HTMLPreElement>(null);
 
     const handleCopy = async () => {
-      await navigator.clipboard.writeText(code);
+      let textToCopy = code || '';
+      if (!textToCopy && preRef.current) {
+        textToCopy = preRef.current.innerText;
+      }
+      await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     };
@@ -86,7 +95,7 @@ export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
                 <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
               </div>
               <span className="text-xs font-medium text-zinc-400 font-mono lowercase tracking-wider">
-                {language}
+                {activeLanguage}
               </span>
             </div>
             
@@ -143,26 +152,38 @@ export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
 
           {/* Code Content */}
           <div className="p-5 overflow-x-auto text-[13px] sm:text-sm custom-scrollbar">
-            <Highlight theme={themes.vsDark} code={code.trim()} language={language}>
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={cn(className, "m-0 bg-transparent")} style={{ ...style, backgroundColor: 'transparent' }}>
-                  {tokens.map((line, i) => (
-                    <div key={i} {...getLineProps({ line, key: i })} className="table-row">
-                      {showLineNumbers && (
-                        <span className="table-cell text-right select-none opacity-30 pr-4 w-8 font-mono text-xs">
-                          {i + 1}
-                        </span>
-                      )}
-                      <span className="table-cell">
-                        {line.map((token, key) => (
-                          <span key={key} {...getTokenProps({ token, key })} />
-                        ))}
-                      </span>
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
+            {code ? (
+              <Highlight theme={themes.vsDark} code={code.trim()} language={activeLanguage}>
+                {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                  <pre ref={preRef} className={cn(className, "m-0 bg-transparent")} style={{ ...style, backgroundColor: 'transparent' }}>
+                    {tokens.map((line, i) => {
+                      const { key: lineKey, ...lineProps } = getLineProps({ line, key: i });
+                      return (
+                        <div key={lineKey as React.Key} {...lineProps} className="table-row">
+                          {showLineNumbers && (
+                            <span className="table-cell text-right select-none opacity-30 pr-4 w-8 font-mono text-xs">
+                              {i + 1}
+                            </span>
+                          )}
+                          <span className="table-cell">
+                            {line.map((token, key) => {
+                              const { key: tokenKey, ...tokenProps } = getTokenProps({ token, key });
+                              return (
+                                <span key={tokenKey as React.Key} {...tokenProps} />
+                              );
+                            })}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </pre>
+                )}
+              </Highlight>
+            ) : (
+              <pre ref={preRef} className="m-0 bg-transparent text-zinc-100 font-mono">
+                {children}
+              </pre>
+            )}
           </div>
           
           {/* Inner ambient shadows for depth */}

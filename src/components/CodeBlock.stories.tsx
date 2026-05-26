@@ -8,6 +8,21 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    glowVariant: {
+      control: 'select',
+      options: ['peach', 'comet', 'light'],
+    },
+    language: {
+      control: 'text',
+    },
+    lang: {
+      control: 'text',
+    },
+    showLineNumbers: {
+      control: 'boolean',
+    },
+  },
 } satisfies Meta<typeof CodeBlock>;
 
 export default meta;
@@ -76,3 +91,14 @@ export const LightGlow: Story = {
     showLineNumbers: true,
   },
 };
+
+export const UsingLangProp: Story = {
+  args: {
+    code: `echo "Hello, world!"
+npm install luminescent`,
+    lang: 'bash',
+    glowVariant: 'comet',
+    showLineNumbers: false,
+  },
+};
+

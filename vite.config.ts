@@ -26,6 +26,7 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       external: ['react', 'react-dom', 'framer-motion', 'lucide-react', 'react/jsx-runtime'],
       output: {
+        banner: '"use client";',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
