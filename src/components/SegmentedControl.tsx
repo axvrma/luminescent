@@ -10,7 +10,7 @@ export interface SegmentedControlProps {
 }
 
 export function SegmentedControl({
-  tabs,
+  tabs = [],
   defaultActiveTab,
   onChange,
   className,
