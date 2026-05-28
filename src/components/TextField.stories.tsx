@@ -13,23 +13,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LightGlow: Story = {
-  args: {
-    placeholder: 'Enter your email address...',
-    glowVariant: 'light',
-  },
-};
-
-export const PeachGlow: Story = {
+export const Default: Story = {
   args: {
     placeholder: 'Enter your email address...',
     glowVariant: 'peach',
   },
 };
 
-export const CometGlow: Story = {
+export const EmailInput: Story = {
+  args: {
+    placeholder: 'Enter your email address...',
+    glowVariant: 'peach',
+  },
+};
+
+export const SearchInput: Story = {
   args: {
     placeholder: 'Search the cosmos...',
-    glowVariant: 'comet',
+    glowVariant: 'peach',
   },
 };

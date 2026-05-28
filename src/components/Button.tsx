@@ -28,7 +28,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           sizeStyles[size],
           variant === "primary" ? "text-[#1a0f0a] focus-visible:ring-[#F6C29A]" : "text-zinc-300 hover:text-white focus-visible:ring-zinc-600",
-          variant === "secondary" && "bg-[#16181e]/80 backdrop-blur-xl border border-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:bg-[#1f222a]/80",
+          variant === "secondary" && "bg-[#16181e]/80 backdrop-blur-xl border border-[#ffaa66]/20 hover:border-[#ffaa66]/40 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:bg-[#1f222a]/80",
           className
         )}
         style={{ WebkitTapHighlightColor: "transparent" }}
@@ -78,7 +78,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <>
              {/* Unclipped Ambient Aura Container (Massive 50px overflow area to let blur spread infinitely) */}
              <div 
-               className="absolute -inset-[50px] rounded-full pointer-events-none"
+               className="absolute -inset-[50px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                style={{
                  padding: '50px',
                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
@@ -88,7 +88,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
              >
                {/* Core Glow (Tight, bright atmospheric bleed) */}
                <div 
-                 className="absolute inset-[50px] rounded-full opacity-100 blur-[6px] transition-opacity duration-500"
+                 className="absolute inset-[50px] rounded-full blur-[6px]"
                  style={{
                    background: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,170,102,1) 320deg, #fffce0 360deg)`,
                    animation: 'spin-border 3s linear infinite',
@@ -97,7 +97,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
                {/* Massive Ambient Aura (Free-flowing, wide atmospheric bleed) */}
                <div 
-                 className="absolute inset-[50px] rounded-full opacity-80 group-hover:opacity-100 blur-[24px] transition-opacity duration-500"
+                 className="absolute inset-[50px] rounded-full blur-[24px]"
                  style={{
                    background: `conic-gradient(from var(--angle), transparent 0deg 180deg, rgba(255,170,102,1) 300deg, #fffce0 360deg)`,
                    animation: 'spin-border 3s linear infinite',
@@ -105,9 +105,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                />
              </div>
 
+             {/* Low light effect within the button */}
+             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-[#ffaa66]/10 to-transparent pointer-events-none transition-opacity duration-500 opacity-50 group-hover:opacity-100" />
+
              {/* Subtle top bevel for secondary */}
-             <div className="absolute inset-0 rounded-full border border-white/[0.04] pointer-events-none" />
-             <div className="absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-100 group-active:opacity-100" />
+             <div className="absolute inset-0 rounded-full shadow-[inset_0_1px_4px_rgba(255,170,102,0.2)] pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-100 group-active:opacity-100" />
           </>
         )}
 

@@ -18,7 +18,7 @@ export const VerticalLeftGlow: Story = {
     orientation: 'vertical',
     intensity: 'high',
     glowDirection: 'left',
-    color: '#a855f7', // Bright purple matching the screenshot
+    color: '#ffaa66', // Peach
   },
 };
 
@@ -27,7 +27,7 @@ export const HorizontalTopGlow: Story = {
     orientation: 'horizontal',
     intensity: 'medium',
     glowDirection: 'top',
-    color: '#3b82f6', // Blue
+    color: '#ffaa66', // Peach
   },
 };
 
@@ -36,6 +36,6 @@ export const SymmetricalBoth: Story = {
     orientation: 'vertical',
     intensity: 'low',
     glowDirection: 'both',
-    color: '#10b981', // Emerald
+    color: '#ffaa66', // Peach
   },
 };

@@ -17,6 +17,7 @@ export function SegmentedControl({
 }: SegmentedControlProps) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab || tabs[0]);
   const [isHovered, setIsHovered] = useState<string | null>(null);
+  const id = React.useId();
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -49,7 +50,7 @@ export function SegmentedControl({
             onMouseEnter={() => setIsHovered(tab)}
             onMouseLeave={() => setIsHovered(null)}
             className={cn(
-              "relative px-7 py-2.5 rounded-full text-[15px] font-medium tracking-tight transition-colors duration-300 outline-none",
+              "relative flex-1 px-7 py-2.5 rounded-full text-[15px] font-medium tracking-tight transition-colors duration-300 outline-none",
               isActive
                 ? "text-[#1a0f0a]"
                 : "text-zinc-500 hover:text-zinc-300"
@@ -58,7 +59,7 @@ export function SegmentedControl({
           >
             {isActive && (
               <motion.div
-                layoutId="active-tab-indicator"
+                layoutId={`active-tab-indicator-${id}`}
                 className="absolute inset-0 rounded-full"
                 initial={false}
                 transition={{
@@ -99,7 +100,7 @@ export function SegmentedControl({
             {/* Hover state for inactive tabs */}
             {!isActive && isHovered === tab && (
               <motion.div
-                layoutId="hover-tab-indicator"
+                layoutId={`hover-tab-indicator-${id}`}
                 className="absolute inset-0 rounded-full bg-white/5"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

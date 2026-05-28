@@ -6,3 +6,7 @@ export * from './components/ScreenReveal';
 export * from './components/SegmentedControl';
 export * from './components/TextField';
 export * from './components/CodeBlock';
+export * from './components/Timeline';
+export * from './components/ImagesBadge';
+export * from './components/ContainerTextFlip';
+export * from './components/Toggle';

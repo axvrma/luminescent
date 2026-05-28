@@ -1,7 +1,7 @@
 {
   "name": "luminescent",
   "private": false,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -10,7 +10,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
     },
     "./style.css": "./dist/style.css"
   },
@@ -70,5 +71,13 @@
     "vite": "^8.0.12",
     "vite-plugin-dts": "^5.0.1",
     "vitest": "^4.1.7"
-  }
+  },
+  "browserslist": [
+    "> 0.2%",
+    "last 2 versions",
+    "not dead",
+    "Firefox ESR",
+    "Safari >= 13",
+    "iOS >= 13"
+  ]
 }

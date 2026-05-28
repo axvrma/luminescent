@@ -56,6 +56,7 @@ export function RadioGroup({
   layout = 'vertical',
   indicatorAnimation = 'fade'
 }: RadioGroupProps) {
+  const id = React.useId();
   return (
     <div 
       className={cn(
@@ -101,7 +102,7 @@ export function RadioGroup({
               {indicatorAnimation === 'slide' ? (
                 isSelected && (
                   <motion.div
-                    layoutId="radio-active-indicator"
+                    layoutId={`radio-active-indicator-${id}`}
                     className="absolute inset-0 rounded-full"
                     initial={false}
                     transition={{

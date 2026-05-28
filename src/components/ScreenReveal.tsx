@@ -93,8 +93,7 @@ export const ScreenReveal = React.forwardRef<HTMLDivElement, ScreenRevealProps>(
         >
           {frontContent}
           
-          {/* iOS style home indicator bar at the bottom */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[35%] h-[5px] bg-white/40 rounded-full pointer-events-none" />
+          {/* iOS style home indicator removed as requested */}
         </motion.div>
       </div>
     );

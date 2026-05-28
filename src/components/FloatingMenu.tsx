@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Box, Shield, Hexagon, Circle } from 'lucide-react';
+import { Divider } from './Divider';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -21,11 +22,13 @@ export interface FloatingMenuProps extends Omit<React.HTMLAttributes<HTMLDivElem
   items?: FloatingMenuItem[];
   activeId?: string;
   onChange?: (id: string) => void;
+  withDivider?: boolean;
 }
 
 export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
-  ({ className, glowColor = 'peach', glowPosition = 'bottom', items, activeId: propActiveId, onChange, ...props }, ref) => {
+  ({ className, glowColor = 'peach', glowPosition = 'bottom', items, activeId: propActiveId, onChange, withDivider, ...props }, ref) => {
     const [activeIcon, setActiveIcon] = useState<string | null>(propActiveId || (items ? items[0]?.id : '0'));
+    const id = React.useId();
 
     useEffect(() => {
       if (propActiveId !== undefined) {
@@ -81,7 +84,7 @@ export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
               <>
                 {isActive && (
                   <motion.div
-                    layoutId="activeIndicator"
+                    layoutId={`activeIndicator-${id}`}
                     className="absolute inset-0 rounded-full"
                     transition={{
                       type: "spring",
@@ -190,6 +193,18 @@ export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
             );
           })}
         </div>
+
+        {/* Divider with down illumination */}
+        {withDivider && (
+          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-full max-w-sm pointer-events-none">
+             <Divider 
+               orientation="horizontal" 
+               glowDirection="bottom" 
+               intensity="high" 
+               color={glowColor === 'peach' ? '#FFCBA4' : '#FFFFFF'} 
+             />
+          </div>
+        )}
       </div>
     );
   }
