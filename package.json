@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "npm run build:lib && concurrently --kill-others -n library,docs \"npm run dev:build --workspace luminescent\" \"npm run dev --workspace luminescent-docs\"",
-    "dev:docs": "npm run build:lib && npm run dev --workspace luminescent-docs",
+    "dev:docs": "npm run build:lib && npm run build-storybook && npm run dev --workspace luminescent-docs",
     "dev:playground": "npm run dev --workspace luminescent",
     "build": "npm run build:docs",
     "build:lib": "npm run build --workspace luminescent",
@@ -24,8 +24,8 @@
     "test:components": "npm run build:docs && playwright test",
     "preview": "npm run preview --workspace luminescent",
     "storybook": "npm run storybook --workspace luminescent",
-    "build-storybook": "npm run build-storybook --workspace luminescent",
-    "prebuild:docs": "npm run docs:api && npm run build:lib",
+    "build-storybook": "npm run build-storybook --workspace luminescent && node scripts/prepare-storybook.mjs",
+    "prebuild:docs": "npm run docs:api && npm run build:lib && npm run build-storybook",
     "docs:api": "node scripts/generate-api.mjs",
     "docs:check": "node scripts/generate-api.mjs --check",
     "test:unit": "npm test --workspace luminescent",
@@ -33,7 +33,7 @@
     "test:examples": "node --experimental-strip-types scripts/check-examples.mjs",
     "test:package": "npm run build:lib && node scripts/verify-package.mjs",
     "check": "npm run lint && npm run typecheck && npm run docs:check && npm run test:unit && npm run test:examples && npm run test:package",
-    "predev": "npm run docs:api",
+    "predev": "npm run docs:api && npm run build-storybook",
     "test:storybook": "node scripts/check-storybook.mjs"
   },
   "devDependencies": {

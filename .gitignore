@@ -25,6 +25,7 @@ dist-ssr
 
 *storybook.log
 storybook-static
+apps/docs/public/stroybook/
 
 # Next.js documentation app
 .next/

@@ -1539,7 +1539,7 @@ p {
 }
 @media (max-width: 540px) {
   .header-inner {
-    gap: 15px;
+    gap: 8px;
     padding-inline: 16px;
     min-height: 64px;
   }

@@ -1,6 +1,16 @@
 [build]
-  command = "npm run build-storybook"
-  publish = "packages/luminescent/storybook-static"
+  command = "npm run build"
+  publish = "apps/docs/.next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Netlify handles public-file rewrites separately from Next.js.
+[[redirects]]
+  from = "/stroybook/"
+  to = "/stroybook/index.html"
+  status = 200
+  force = true
 
 # Optional: Set cache control headers for performance
 [[headers]]
@@ -9,6 +19,6 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/assets/*"
+  for = "/stroybook/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

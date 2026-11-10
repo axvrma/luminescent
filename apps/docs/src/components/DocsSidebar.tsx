@@ -57,6 +57,9 @@ export function DocsSidebar() {
             <h2>Explore</h2>
             {link('Playground', '/playground')}
             {link('Component gallery', '/docs/examples/component-gallery')}
+            <a className="sidebar-link" href="/stroybook/">
+              Storybook
+            </a>
             <a className="sidebar-link" href="https://github.com/axvrma/luminescent">
               GitHub <ArrowUpRight size={12} />
             </a>

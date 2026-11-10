@@ -19,6 +19,7 @@ export function SiteHeader() {
           <Link href="/playground">
             Playground <span className="nav-new">NEW</span>
           </Link>
+          <a href="/stroybook/">Storybook</a>
         </nav>
         <div className="header-actions">
           <DocsSearch />
