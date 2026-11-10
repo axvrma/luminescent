@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ContainerTextFlip } from './ContainerTextFlip';
 
 const meta = {
@@ -19,8 +19,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    words: ["better", "modern", "Tyler Durden", "awesome"],
-    variant: "secondary",
+    words: ['better', 'modern', 'Tyler Durden', 'awesome'],
+    variant: 'secondary',
   },
   render: (args) => (
     <div className="flex flex-col items-center justify-center p-12">
@@ -31,8 +31,8 @@ export const Default: Story = {
 
 export const PrimaryVariant: Story = {
   args: {
-    words: ["highlighted", "luminescent", "tactile", "glowing"],
-    variant: "primary",
+    words: ['highlighted', 'luminescent', 'tactile', 'glowing'],
+    variant: 'primary',
   },
   render: (args) => (
     <div className="flex flex-col items-center justify-center p-12">
@@ -43,14 +43,16 @@ export const PrimaryVariant: Story = {
 
 export const HeroSectionWithAnimation: Story = {
   args: {
-    words: ["better", "modern", "beautiful", "awesome"],
-    variant: "secondary",
+    words: ['better', 'modern', 'beautiful', 'awesome'],
+    variant: 'secondary',
   },
   render: (args) => (
-    <div className="flex items-center justify-center text-left text-4xl leading-normal font-bold tracking-tight text-white md:text-7xl">
+    <div className="flex items-center justify-center text-left text-4xl leading-normal font-bold tracking-tight text-[color:var(--lumi-text)] md:text-7xl">
       <div className="inline-block">
         Make your websites look 10x <ContainerTextFlip {...args} />
       </div>
     </div>
   ),
 };
+
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };

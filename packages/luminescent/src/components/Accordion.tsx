@@ -1,9 +1,12 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { cn } from '../lib/classes';
 import { glowStyle, type GlowColor } from '../lib/glow';
 
-export interface AccordionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'onChange'> {
+export interface AccordionProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title' | 'onChange'
+> {
   title: React.ReactNode;
   expanded?: boolean;
   defaultExpanded?: boolean;
@@ -13,14 +16,38 @@ export interface AccordionProps extends Omit<React.HTMLAttributes<HTMLDivElement
   headingLevel?: 2 | 3 | 4 | 5 | 6;
 }
 
-export function Accordion({ title, expanded, defaultExpanded = false, onChange, disabled, glowColor = 'peach', headingLevel = 3, className, style, children, id, ...props }: AccordionProps) {
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(function Accordion(
+  {
+    title,
+    expanded,
+    defaultExpanded = false,
+    onChange,
+    disabled,
+    glowColor,
+    headingLevel = 3,
+    className,
+    style,
+    children,
+    id,
+    ...props
+  }: AccordionProps,
+  ref,
+) {
   const generatedId = React.useId();
   const accordionId = id ?? generatedId;
   const [internalExpanded, setInternalExpanded] = React.useState(defaultExpanded);
   const isExpanded = expanded ?? internalExpanded;
   const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   return (
-    <div {...props} id={accordionId} className={cn('lumi-surface lumi-accordion', className)} style={glowStyle(glowColor, style)} data-expanded={isExpanded} data-disabled={disabled || undefined}>
+    <div
+      ref={ref}
+      {...props}
+      id={accordionId}
+      className={cn('lumi-surface lumi-accordion', className)}
+      style={glowStyle(glowColor, style)}
+      data-expanded={isExpanded}
+      data-disabled={disabled || undefined}
+    >
       <Heading className="lumi-accordion-heading">
         <button
           type="button"
@@ -29,7 +56,8 @@ export function Accordion({ title, expanded, defaultExpanded = false, onChange, 
           disabled={disabled}
           aria-expanded={isExpanded}
           aria-controls={`${accordionId}-panel`}
-          onClick={() => {
+          onClick={(event) => {
+            if (event.defaultPrevented) return;
             if (expanded === undefined) setInternalExpanded(!isExpanded);
             onChange?.(!isExpanded);
           }}
@@ -38,7 +66,15 @@ export function Accordion({ title, expanded, defaultExpanded = false, onChange, 
           <ChevronDown size={18} className="lumi-accordion-chevron" aria-hidden="true" />
         </button>
       </Heading>
-      <div id={`${accordionId}-panel`} role="region" aria-labelledby={`${accordionId}-trigger`} hidden={!isExpanded} className="lumi-accordion-panel">{children}</div>
+      <div
+        id={`${accordionId}-panel`}
+        role="region"
+        aria-labelledby={`${accordionId}-trigger`}
+        hidden={!isExpanded}
+        className="lumi-accordion-panel"
+      >
+        {children}
+      </div>
     </div>
   );
-}
+});

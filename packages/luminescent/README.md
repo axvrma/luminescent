@@ -1,54 +1,44 @@
-# Luminescent ✨
+# Luminescent
 
-A collection of premium, highly-polished, and visually stunning React UI components tailored specifically for modern dark-mode applications.
+Beautiful by default. Accessible by design. Engineered for production.
 
-Luminescent is built with an obsession for detail, focusing on smooth micro-animations, mathematically precise glowing effects, and rich, vibrant aesthetics that instantly elevate any user interface.
+Luminous React components, native form controls, scoped themes, and typed APIs. React 18 and 19 are supported. Tailwind CSS is not required by consumers.
 
-## 🚀 Features
-
-- **Mathematical Precision:** Utilizes advanced modern CSS techniques (`@property`, `padding-box` clipping) to create flawless, infinitely scalable glowing borders without bleed or stretch.
-- **Dynamic Interactions:** Components feature fluid sliding indicators, discrete fades, and magnetic hover effects powered by Framer Motion.
-- **Premium Aesthetics:** Curated dark-mode color palettes featuring rich blacks (`#050505`), glassmorphism, and vibrant gradient blooms.
-- **Drop-in Ready:** Built with React and Tailwind CSS. Just copy the component and its dependencies into your codebase.
-
-## 📦 Components Included
-
-* **Checkbox, Select, Slider, Rating:** Native form controls with illuminated focus states, glowing indicators, and keyboard support.
-* **Chip:** Soft or outlined tags with four glow palettes and an optional removal action.
-* **Card:** Dark glass surfaces with lit edges and a cursor-following spotlight.
-* **Accordion:** Accessible expandable details with controlled or uncontrolled state.
-* **Alert:** Info, success, warning, and error feedback with optional dismissal.
-* **Progress:** Determinate and indeterminate linear beams and circular rings.
-* **Skeleton:** Text, rectangular, and circular placeholders with motion-aware shimmer or pulse.
-* **TextField:** Features a hyper-smooth, animated "single stream" light gradient that actively orbits the input border while focused.
-* **SegmentedControl:** A pill-shaped layout control featuring a beautifully animated, sliding active indicator that snaps seamlessly between options.
-* **RadioGroup:** Offers both vertical and horizontal layouts, supporting customizable light variants (slide or fade) to indicate active states.
-* **Button:** Highly stylized primary and secondary buttons featuring peachy, ambient blooms and deeply interactive hover states.
-* **Divider:** A gorgeous visual separator that emits a soft, fading glow from the edges or center to break up content beautifully.
-
-## 🛠️ Technology Stack
-
-- **React** (v19)
-- **Tailwind CSS** (v3.4)
-- **Framer Motion** (for complex fluid layout animations)
-- **Vite** & **Storybook** (for component development and preview)
-
-Import `luminescent/style.css` once at your application's root. The extended components support `glowColor="peach"`, `"violet"`, `"blue"`, or `"mint"`; alerts derive their palette from severity. All new continuous animations respect `prefers-reduced-motion`.
-
-## 📖 Viewing the Playground
-
-Luminescent uses Storybook to showcase all components in an interactive, dark-themed playground.
-
-```bash
-# Install dependencies
-npm install
-
-# Start the interactive Storybook playground
-npm run storybook
+```sh
+npm install luminescent
 ```
 
-## 🌐 Deployment
+```tsx
+import { Button, LuminescentProvider } from 'luminescent';
+import 'luminescent/style.css';
 
-This project includes a zero-configuration `netlify.toml` file. To deploy the interactive Storybook playground to Netlify:
-1. Connect this repository to your Netlify dashboard.
-2. Netlify will automatically build the static Storybook using `npm run build-storybook` and serve it from the `storybook-static` directory.
+export function App() {
+  return (
+    <LuminescentProvider theme="system" accent="peach" glow="subtle">
+      <Button>Create project</Button>
+    </LuminescentProvider>
+  );
+}
+```
+
+Dark is the default. Theme accepts dark/light/system; accent accepts peach/violet/blue/mint; glow accepts none/subtle/normal/intense; motion accepts system/reduced. Override documented --lumi- CSS variables through the provider's typed style prop. Separately themed trees and their portalled overlays remain isolated.
+
+## Components
+
+Accordion, Alert, Button, Card, Checkbox, Chip, CodeBlock, ContainerTextFlip, Divider, FloatingMenu, ImagesBadge, Progress, RadioGroup, Rating, ScreenReveal, SegmentedControl, Select, Skeleton, Slider, TextField, Timeline, Toggle; plus Dialog/Modal, Tooltip, Popover, DropdownMenu, Tabs, Toast/ToastProvider, Avatar/AvatarGroup, Badge, Spinner, EmptyState, Breadcrumbs and Pagination. Public prop types are exported from the root.
+
+TextField, Checkbox and Select use native change events. Toggle/Accordion use boolean callbacks; RadioGroup/SegmentedControl use string callbacks; Slider/Rating/Pagination use numeric callbacks. Complex overlays build on individually scoped Radix primitives.
+
+## Server rendering
+
+The package root includes a client boundary for Next.js. Import CSS in your root layout and put state/event handlers in a consumer client component. Components use stable IDs and CSS-based system themes. Both ESM and CJS are available. React/React DOM are peers, never bundled.
+
+## Migration and version
+
+The repository retains version 0.1.7 pending release. Changes described here are unreleased until a maintainer publishes a new version. Button now defaults to type="button"; SegmentedControl uses radio semantics (use Tabs for panels); Card spotlight is opt-in; distributed CSS no longer applies a global reset. See the root CHANGELOG and compatibility document.
+
+## Development
+
+Run npm ci from the monorepo root, then npm run dev, npm run storybook, or npm run dev:playground. See CONTRIBUTING.md in the repository for validation/release commands.
+
+[Source and documentation](https://github.com/axvrma/luminescent) · MIT License

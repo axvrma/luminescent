@@ -21,17 +21,29 @@
     "lint": "npm run lint --workspaces --if-present",
     "lint:lib": "npm run lint --workspace luminescent",
     "lint:docs": "npm run lint --workspace luminescent-docs",
-    "test:components": "npm run build:lib && playwright test",
+    "test:components": "npm run build:docs && playwright test",
     "preview": "npm run preview --workspace luminescent",
     "storybook": "npm run storybook --workspace luminescent",
     "build-storybook": "npm run build-storybook --workspace luminescent",
-    "prebuild:docs": "npm run build:lib"
+    "prebuild:docs": "npm run docs:api && npm run build:lib",
+    "docs:api": "node scripts/generate-api.mjs",
+    "docs:check": "node scripts/generate-api.mjs --check",
+    "test:unit": "npm test --workspace luminescent",
+    "typecheck": "npm run typecheck --workspace luminescent && npm exec --workspace luminescent-docs -- tsc --noEmit",
+    "test:examples": "node --experimental-strip-types scripts/check-examples.mjs",
+    "test:package": "npm run build:lib && node scripts/verify-package.mjs",
+    "check": "npm run lint && npm run typecheck && npm run docs:check && npm run test:unit && npm run test:examples && npm run test:package",
+    "predev": "npm run docs:api",
+    "test:storybook": "node scripts/check-storybook.mjs"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "prettier": "^3.9.10"
   },
   "overrides": {
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "minimatch@>=7 <11.0.1": "^11.0.1",
+    "glob": "^14.0.2"
   }
 }

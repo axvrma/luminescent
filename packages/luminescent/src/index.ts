@@ -1,6 +1,6 @@
 import './index.css';
 
-export type { GlowColor } from './lib/glow';
+export type { GlowColor, GlowIntensity, LuminescentStyle } from './lib/glow';
 export * from './components/Accordion';
 export * from './components/Alert';
 export * from './components/Card';
@@ -23,3 +23,19 @@ export * from './components/Timeline';
 export * from './components/ImagesBadge';
 export * from './components/ContainerTextFlip';
 export * from './components/Toggle';
+
+export { LuminescentProvider } from './components/LuminescentProvider';
+export type { LuminescentProviderProps } from './components/LuminescentProvider';
+export * from './components/Dialog';
+export * from './components/Tooltip';
+export * from './components/Popover';
+export * from './components/DropdownMenu';
+export * from './components/Tabs';
+export * from './components/Spinner';
+export * from './components/Badge';
+export * from './components/Avatar';
+export * from './components/EmptyState';
+export * from './components/Breadcrumbs';
+export * from './components/Pagination';
+export * from './components/Toast';
+export { motionPresets } from './lib/motion';

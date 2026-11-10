@@ -1,65 +1,66 @@
-# Luminescent ✨
+# Luminescent
 
-Luminescent's React component library, Storybook playground, and Next.js documentation site live in one npm workspace. The documentation uses the local `luminescent` package instead of downloading a published release.
+Beautiful by default. Accessible by design. Engineered for production.
 
-## Projects
+An npm workspaces monorepo containing a typed React component library, a Next.js documentation portal and Storybook. Package identity and entry points remain `luminescent` and `luminescent/style.css`.
 
-- `packages/luminescent` — publishable React component library, Vite playground, and Storybook stories.
-- `apps/docs` — Next.js website, Markdown documentation, examples, and public assets imported from `luminescent-docs`.
-
-The library keeps its npm package name (`luminescent`), version, and public exports. The root package is private. Both projects share the root `package-lock.json`; run dependency installation from this directory.
-
-## Getting started
-
-Use Node.js 24 (or Node.js 22.13+) and npm >=10:
-
-```bash
-nvm use
-npm install
-npm run dev
+```sh
+nvm use                  # Node 24; Node 22.13+ also supported
+npm ci
+npm run dev              # http://localhost:3000
 ```
 
-The docs run at http://localhost:3000. `npm run dev` first builds the library, then watches it and runs Next.js together, so component edits rebuild the local package used by the docs.
+- `packages/luminescent`: library source, token CSS, Vite laboratory, stories and behavior tests.
+- `apps/docs`: documentation, local search, component catalog, interactive playground and generated API references.
+- `docs/architecture`: baseline audit, API compatibility contract and validation evidence.
 
-Other development commands:
+## Use the library
 
-```bash
-npm run dev:docs        # Build the library and run only Next.js
-npm run dev:playground  # Run the Vite playground
-npm run storybook      # Run Storybook on port 6006
+```tsx
+import { Button, LuminescentProvider } from 'luminescent';
+import 'luminescent/style.css';
+
+export function App() {
+  return (
+    <LuminescentProvider theme="system" accent="peach" glow="subtle">
+      <Button>Create project</Button>
+    </LuminescentProvider>
+  );
+}
 ```
 
-## Build and validation
+Consumers need React 18 or 19, with matching React DOM. Tailwind is not required. Themes use namespaced CSS variables. Motion and complex focus behavior can be configured through the provider; portalled overlays inherit local themes. The library stylesheet does not reset the consuming application's elements.
 
-```bash
-npm run build          # Build the library, then the docs
-npm run build:lib      # Build only the publishable library
-npm run build:docs     # Build the library and docs
+## Development
+
+```sh
+npm run dev:docs          # Build the library and run Next.js
+npm run dev:playground    # Vite component laboratory
+npm run storybook        # Storybook on port 6006
+npm run docs:api          # Regenerate API + trusted Markdown manifests after source edits
+```
+
+`npm run dev` watches library changes. Regenerate documentation metadata after editing interfaces/Markdown. The docs homepage, `/docs/components`, and `/playground` use the local workspace package.
+
+## Validation
+
+```sh
+npm run build:lib
+npm run check            # Lint, types, metadata drift, behavior, examples, packed consumers
+npm run build:docs       # Production docs + library
 npm run build-storybook
-npm run lint           # Lint both workspaces
-npm run test:components # Browser checks on desktop and mobile (requires Playwright Chromium)
-npm start              # Serve the production docs build
+npx playwright install chromium
+npm run test:components  # Production desktop/mobile tests and dark/light axe checks
+npm run test:storybook   # Standalone story accessibility checks
+npm audit
 ```
 
-The library output is `packages/luminescent/dist`, the docs output is `apps/docs/.next`, and Storybook outputs to `packages/luminescent/storybook-static`.
+`npm run test:package` installs the actual tarball in isolated React 18.3.1 and 19.2.4 consumers, renders every component on the server, checks ESM/CJS declarations and CSS isolation, and verifies a simple component does not bundle unrelated runtime modules. Results are written to `docs/architecture/package-report.json`.
 
-The component gallery at `/docs/examples/component-gallery` covers Checkbox, Select, Slider, Rating, Chip, Card, Accordion, Alert, Progress, and Skeleton. Each also has individual documentation and Storybook stories. To install the browser for interaction checks, run `npx playwright install chromium` once. The checks start their own docs server on port 3100; when a docs server is already running, reuse it with `LUMINESCENT_TEST_URL=http://localhost:3000 npm run test:components` (adjust the port as needed).
+## Release and deployment
 
-## Publishing the library
+The manifest remains **0.1.7**. These changes are **unreleased**. A maintainer chooses the next version and reviews `CHANGELOG.md` and the compatibility document before publishing. The manual release workflow validates a committed version and defaults to producing a dry-run tarball. Publishing requires explicitly selecting publish and an npm token in the protected GitHub environment. No publishing credentials are included.
 
-```bash
-npm pack --workspace luminescent --dry-run
-npm publish --workspace luminescent
-```
+Netlify serves the static Storybook artifact via `netlify.toml`. For the Next.js portal, install workspaces at the repository root and run `npm run build:docs`; use `apps/docs` as the hosting root. Set `NEXT_PUBLIC_SITE_URL` to the actual production origin for social and sitemap URLs. Builds use local system fonts and do not depend on a network font fetch.
 
-The library's `prepack` script builds it before packaging. Only its `dist` directory and npm's standard metadata files are published; the docs remain private.
-
-## Deployment
-
-The root `netlify.toml` builds and serves Storybook from `packages/luminescent/storybook-static`.
-
-For the Next.js site, configure the hosting project's root directory as `apps/docs`, install the npm workspaces from the repository root (`cd ../.. && npm ci`), and build with `cd ../.. && npm run build:docs`. Keep the default Next.js output directory. The docs configuration traces files from the workspace root so deployments include the local library and Markdown content.
-
-## Documentation source
-
-The former `luminescent-docs` project is included under `apps/docs`, including its content, images, and support files. The original sibling checkout is retained as a backup and is no longer needed to build or run this workspace.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [CHANGELOG.md](CHANGELOG.md), [the audit](docs/architecture/audit.md), and [MIT License](LICENSE).

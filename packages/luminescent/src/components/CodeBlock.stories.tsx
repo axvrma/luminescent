@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CodeBlock } from './CodeBlock';
 
 const meta = {
@@ -36,7 +36,7 @@ export function Example() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <h2 className="text-2xl font-bold text-white">Count: {count}</h2>
+      <h2 className="text-2xl font-bold text-[color:var(--lumi-text)]">Count: {count}</h2>
       <Button 
         variant="primary" 
         onClick={() => setCount(c => c + 1)}
@@ -102,3 +102,9 @@ npm install luminescent`,
   },
 };
 
+export const Default: Story = { ...PeachGlow };
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };
+export const UnknownLanguage: Story = {
+  args: { code: 'arbitrary input', language: 'unknown-language' },
+};
+export const Empty: Story = { args: { code: '' } };

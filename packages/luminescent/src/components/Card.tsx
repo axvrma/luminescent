@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../lib/utils';
+import { cn } from '../lib/classes';
 import { glowStyle, type GlowColor } from '../lib/glow';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,14 +8,30 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ glowColor = 'peach', spotlight = true, className, style, children, onPointerMove, onPointerLeave, ...props }, ref) => (
+  (
+    {
+      glowColor,
+      spotlight = false,
+      className,
+      style,
+      children,
+      onPointerMove,
+      onPointerLeave,
+      ...props
+    },
+    ref,
+  ) => (
     <div
       {...props}
       ref={ref}
       className={cn('lumi-surface lumi-card', className)}
       style={glowStyle(glowColor, style)}
       onPointerMove={(event) => {
-        if (spotlight) {
+        if (
+          spotlight &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          !event.currentTarget.closest('[data-lumi-motion="reduced"]')
+        ) {
           const bounds = event.currentTarget.getBoundingClientRect();
           event.currentTarget.style.setProperty('--lumi-x', `${event.clientX - bounds.left}px`);
           event.currentTarget.style.setProperty('--lumi-y', `${event.clientY - bounds.top}px`);
@@ -31,6 +47,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       {spotlight && <span className="lumi-card-spotlight" aria-hidden="true" />}
       <div className="lumi-card-content">{children}</div>
     </div>
-  )
+  ),
 );
 Card.displayName = 'Card';

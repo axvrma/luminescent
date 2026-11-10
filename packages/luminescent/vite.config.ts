@@ -3,17 +3,31 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
+import { copyFile, writeFile } from 'node:fs/promises';
+const dirname = fileURLToPath(new URL('.', import.meta.url));
 export default defineConfig({
+  publicDir: false,
   plugins: [
     react(),
-    dts({
-      insertTypesEntry: true,
-      exclude: ['**/*.stories.tsx'],
-      tsconfigPath: './tsconfig.app.json'
-    }),
+    ...(process.env.LUMINESCENT_STORYBOOK
+      ? []
+      : [
+          dts({
+            entryRoot: 'src',
+            insertTypesEntry: true,
+            bundleTypes: true,
+            include: ['src/index.ts', 'src/components/**/*.tsx', 'src/lib/**/*.ts'],
+            exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
+            tsconfigPath: './tsconfig.lib.json',
+            afterBuild: async () => {
+              await copyFile(
+                path.join(dirname, 'dist/index.d.ts'),
+                path.join(dirname, 'dist/index.d.cts'),
+              );
+              await writeFile(path.join(dirname, 'dist/style.css.d.ts'), 'export {};\n');
+            },
+          }),
+        ]),
   ],
   build: {
     lib: {
@@ -21,17 +35,14 @@ export default defineConfig({
       name: 'Luminescent',
       cssFileName: 'style',
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
+      fileName: (format, name) => `${name}.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      // make sure to externalize deps that shouldn't be bundled
-      external: ['react', 'react-dom', 'framer-motion', 'lucide-react', 'react/jsx-runtime'],
+      external: (id) => !id.startsWith('.') && !path.isAbsolute(id),
       output: {
         banner: '"use client";',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
+        preserveModules: true,
+        preserveModulesRoot: path.resolve(dirname, 'src'),
       },
     },
   },

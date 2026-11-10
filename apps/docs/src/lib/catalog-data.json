@@ -1,0 +1,342 @@
+{
+  "Accordion": {
+    "category": "Disclosure",
+    "description": "Make room for the details.",
+    "code": "import { Accordion } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Accordion title=\"What makes it luminescent?\" defaultExpanded>\n      Semantic tokens, carefully layered light, and native interactions.\n    </Accordion>\n  );\n}",
+    "accessibility": "Tab to a heading; Enter or Space toggles its associated region. Collapsed content is hidden from the tab order.",
+    "state": "expanded / defaultExpanded / onChange",
+    "slug": "accordion",
+    "controlledCode": "import { useState } from \"react\";\nimport { Accordion } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <Accordion title=\"Details\" expanded={value} onChange={setValue}>\n      Your project details.\n    </Accordion>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Accordion } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Accordion title=\"What makes it luminescent?\" defaultExpanded>\n        Semantic tokens, carefully layered light, and native interactions.\n      </Accordion>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Alert": {
+    "category": "Feedback",
+    "description": "Messages with a clear purpose.",
+    "code": "import { Alert } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Alert severity=\"success\" title=\"Changes saved\">\n      Your workspace is up to date.\n    </Alert>\n  );\n}",
+    "accessibility": "Success/info use status; warning/error use alert. State is communicated through text and an icon, in addition to color.",
+    "state": null,
+    "slug": "alert",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Alert } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Alert severity=\"success\" title=\"Changes saved\">\n        Your workspace is up to date.\n      </Alert>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Button": {
+    "category": "Actions",
+    "description": "A considered starting point for every action.",
+    "code": "import { Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return <Button startIcon={<span>＋</span>}>Create project</Button>;\n}",
+    "accessibility": "Native button: Enter and Space activate. Default type is button; set type=\"submit\" for forms. Loading disables activation and exposes aria-busy. Icon-only buttons need an aria-label.",
+    "state": null,
+    "slug": "button",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Button startIcon={<span>＋</span>}>Create project</Button>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Card": {
+    "category": "Layout",
+    "description": "A surface with a quiet sense of depth.",
+    "code": "import { Card, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Card spotlight>\n      <h3>A brighter workspace</h3>\n      <p>Light follows your cursor when spotlight is enabled.</p>\n      <Button variant=\"secondary\">Explore</Button>\n    </Card>\n  );\n}",
+    "accessibility": "A noninteractive container. Use an actual link or button for actions; do not attach card-only click interactions. Cursor tracking is opt-in and disabled for reduced motion.",
+    "state": null,
+    "slug": "card",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Card, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Card spotlight>\n        <h3>A brighter workspace</h3>\n        <p>Light follows your cursor when spotlight is enabled.</p>\n        <Button variant=\"secondary\">Explore</Button>\n      </Card>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Checkbox": {
+    "category": "Forms",
+    "description": "Small choices, beautifully clear.",
+    "code": "import { Checkbox } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Checkbox\n      label=\"Ambient lighting\"\n      description=\"Give your interface a little warmth.\"\n      defaultChecked\n      name=\"lighting\"\n    />\n  );\n}",
+    "accessibility": "Native checkbox supports Space, label activation, indeterminate state, required, name and form submission. React onChange receives the native input event.",
+    "state": "checked / defaultChecked / onChange (native event)",
+    "slug": "checkbox",
+    "controlledCode": "import { useState } from \"react\";\nimport { Checkbox } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <Checkbox\n      label=\"Lighting\"\n      checked={value}\n      onChange={(event) => setValue(event.currentTarget.checked)}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Checkbox } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Checkbox\n        label=\"Ambient lighting\"\n        description=\"Give your interface a little warmth.\"\n        defaultChecked\n        name=\"lighting\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Chip": {
+    "category": "Data display",
+    "description": "A little context, a little color.",
+    "code": "import { Chip } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Chip glowColor=\"mint\" onDelete={() => {}} deleteLabel=\"Remove React\">\n      React\n    </Chip>\n  );\n}",
+    "accessibility": "Removal is a native button with a specific accessible label. Disabled chips also disable their removal button.",
+    "state": null,
+    "slug": "chip",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Chip } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Chip glowColor=\"mint\" onDelete={() => {}} deleteLabel=\"Remove React\">\n        React\n      </Chip>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "CodeBlock": {
+    "category": "Data display",
+    "description": "Code that is as useful as it looks.",
+    "code": "import { CodeBlock } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <CodeBlock\n      code={'import { Button } from \"luminescent\";'}\n      language=\"tsx\"\n      showLineNumbers\n    />\n  );\n}",
+    "accessibility": "Scrollable keyboard-focusable code region. Copy reports success/failure in a status region, preserves the original source, and never includes decorative line numbers. Unknown languages and sources over 20,000 characters render as plain text.",
+    "state": null,
+    "slug": "codeblock",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, CodeBlock } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <CodeBlock\n        code={'import { LuminescentProvider, Button } from \"luminescent\";'}\n        language=\"tsx\"\n        showLineNumbers\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "ContainerTextFlip": {
+    "category": "Motion",
+    "description": "Words change. The layout stays composed.",
+    "code": "import { ContainerTextFlip } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <ContainerTextFlip words={[\"thoughtful\", \"beautiful\", \"accessible\"]} />\n  );\n}",
+    "accessibility": "A stable accessible text alternative includes every word. Visible cycling has a pause control, stops offscreen document cycling, and stops for reduced motion. Empty lists render nothing. Longest-word sizing prevents layout shift.",
+    "state": null,
+    "slug": "containertextflip",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, ContainerTextFlip } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <ContainerTextFlip words={[\"thoughtful\", \"beautiful\", \"accessible\"]} />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Divider": {
+    "category": "Layout",
+    "description": "A fine line with a soft edge.",
+    "code": "import { Divider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Divider orientation=\"horizontal\" intensity=\"low\" glowDirection=\"bottom\" />\n  );\n}",
+    "accessibility": "Exposes separator and orientation. Set role=\"presentation\" when purely decorative. The default orientation remains vertical for compatibility.",
+    "state": null,
+    "slug": "divider",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Divider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Divider\n        orientation=\"horizontal\"\n        intensity=\"low\"\n        glowDirection=\"bottom\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "FloatingMenu": {
+    "category": "Navigation",
+    "description": "Quick access, in just the right place.",
+    "code": "import { FloatingMenu } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <FloatingMenu\n      items={[\n        { id: \"home\", label: \"Home\", href: \"/\" },\n        { id: \"settings\", label: \"Settings\" },\n      ]}\n    />\n  );\n}",
+    "accessibility": "Links navigate; buttons perform actions. Native Tab/Enter/Space behavior, visible focus and aria-current/aria-pressed. Supply useful labels for every item, including icon items.",
+    "state": "activeId / defaultActiveId / onChange",
+    "slug": "floatingmenu",
+    "controlledCode": "import { useState } from \"react\";\nimport { FloatingMenu } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"home\");\n  return (\n    <FloatingMenu\n      activeId={value}\n      onChange={setValue}\n      items={[\n        { id: \"home\", label: \"Home\" },\n        { id: \"settings\", label: \"Settings\" },\n      ]}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, FloatingMenu } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <FloatingMenu\n        items={[\n          { id: \"home\", label: \"Home\", href: \"/\" },\n          { id: \"settings\", label: \"Settings\" },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "ImagesBadge": {
+    "category": "Motion",
+    "description": "A small collection, ready to unfold.",
+    "code": "import { ImagesBadge } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <ImagesBadge\n      text=\"Project gallery\"\n      images={[\"/sample1.jpg\", \"/sample2.jpg\"]}\n      href=\"#gallery\"\n    />\n  );\n}",
+    "accessibility": "The label names the collection; preview images are decorative. Linked badges unfold on keyboard focus as well as hover. With no href the badge is display-only. At most three images are shown.",
+    "state": null,
+    "slug": "imagesbadge",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, ImagesBadge } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <ImagesBadge\n        text=\"Project gallery\"\n        images={[\"/sample1.jpg\", \"/sample2.jpg\"]}\n        href=\"#gallery\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Progress": {
+    "category": "Feedback",
+    "description": "A clear signal of what comes next.",
+    "code": "import { Progress } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return <Progress value={64} label=\"Preparing your workspace\" showValue />;\n}",
+    "accessibility": "Exposes progressbar, min/max and current value. Omit value for indeterminate progress. Supply a descriptive label; updates do not continuously interrupt screen readers.",
+    "state": "value (omit for indeterminate)",
+    "slug": "progress",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Progress } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Progress value={64} label=\"Preparing your workspace\" showValue />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "RadioGroup": {
+    "category": "Forms",
+    "description": "One clear choice from a set of possibilities.",
+    "code": "import { RadioGroup } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <RadioGroup\n      label=\"Plan\"\n      name=\"plan\"\n      defaultValue=\"pro\"\n      options={[\n        { value: \"starter\", label: \"Starter\" },\n        { value: \"pro\", label: \"Pro\" },\n        { value: \"enterprise\", label: \"Enterprise\", disabled: true },\n      ]}\n    />\n  );\n}",
+    "accessibility": "Native radio arrow keys select within one uniquely named group. Tab enters/leaves the group; disabled options are skipped. One callback per change. Provide a label or aria-labelledby. Explicit names are intentionally shared only when representing the same form field.",
+    "state": "value / defaultValue / onChange (string)",
+    "slug": "radiogroup",
+    "controlledCode": "import { useState } from \"react\";\nimport { RadioGroup } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"pro\");\n  return (\n    <RadioGroup\n      label=\"Plan\"\n      value={value}\n      onChange={setValue}\n      options={[\n        { value: \"starter\", label: \"Starter\" },\n        { value: \"pro\", label: \"Pro\" },\n      ]}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, RadioGroup } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <RadioGroup\n        label=\"Plan\"\n        name=\"plan\"\n        defaultValue=\"pro\"\n        options={[\n          { value: \"starter\", label: \"Starter\" },\n          { value: \"pro\", label: \"Pro\" },\n          { value: \"enterprise\", label: \"Enterprise\", disabled: true },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Rating": {
+    "category": "Forms",
+    "description": "Give every star its moment.",
+    "code": "import { Rating } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return <Rating label=\"Rate your experience\" defaultValue={4} name=\"rating\" />;\n}",
+    "accessibility": "Native radio keyboard interaction. readOnly renders a single image summary. Integer values are clamped; max is bounded to 1–100. This component does not support fractional ratings.",
+    "state": "value / defaultValue / onChange (number)",
+    "slug": "rating",
+    "controlledCode": "import { useState } from \"react\";\nimport { Rating } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(4);\n  return <Rating label=\"Quality\" value={value} onChange={setValue} />;\n}",
+    "themedCode": "import { LuminescentProvider, Rating } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Rating label=\"Rate your experience\" defaultValue={4} name=\"rating\" />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "ScreenReveal": {
+    "category": "Motion",
+    "description": "A second layer, without losing your place.",
+    "code": "import { ScreenReveal, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <ScreenReveal\n      isOpen={true}\n      frontContent={<p>Main screen</p>}\n      revealContent={<Button>Quick action</Button>}\n    />\n  );\n}",
+    "accessibility": "The closed reveal layer is hidden and cannot receive focus. Provide an external, labeled toggle with aria-expanded. The front layer remains available; this is a visual layout, not a modal.",
+    "state": "isOpen (controlled)",
+    "slug": "screenreveal",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, ScreenReveal, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <ScreenReveal\n        isOpen={true}\n        frontContent={<p>Main screen</p>}\n        revealContent={<Button>Quick action</Button>}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "SegmentedControl": {
+    "category": "Forms",
+    "description": "A compact way to choose a view.",
+    "code": "import { SegmentedControl } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <SegmentedControl\n      tabs={[\"Design\", \"Develop\", \"Deploy\"]}\n      defaultActiveTab=\"Design\"\n      aria-label=\"Workflow\"\n    />\n  );\n}",
+    "accessibility": "A native radio selection group with arrow keys. Legacy tabs is the options prop name; it does not describe tab panels. Use Tabs when choices reveal associated panels.",
+    "state": "value (or activeTab) / defaultActiveTab / onChange",
+    "slug": "segmentedcontrol",
+    "controlledCode": "import { useState } from \"react\";\nimport { SegmentedControl } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"Design\");\n  return (\n    <SegmentedControl\n      aria-label=\"Workflow\"\n      tabs={[\"Design\", \"Develop\", \"Deploy\"]}\n      value={value}\n      onChange={setValue}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, SegmentedControl } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <SegmentedControl\n        tabs={[\"Design\", \"Develop\", \"Deploy\"]}\n        defaultActiveTab=\"Design\"\n        aria-label=\"Workflow\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Select": {
+    "category": "Forms",
+    "description": "The reliability of native selection.",
+    "code": "import { Select } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Select label=\"Workspace\" defaultValue=\"personal\" name=\"workspace\">\n      <option value=\"personal\">Personal</option>\n      <option value=\"team\">Team</option>\n    </Select>\n  );\n}",
+    "accessibility": "Native select retains platform keyboard interactions and form validation. Labels, description and error are linked. Size chooses visual dimensions; multiple selection is not supported.",
+    "state": "value / defaultValue / onChange (native event)",
+    "slug": "select",
+    "controlledCode": "import { useState } from \"react\";\nimport { Select } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"personal\");\n  return (\n    <Select\n      label=\"Workspace\"\n      value={value}\n      onChange={(event) => setValue(event.currentTarget.value)}\n    >\n      <option value=\"personal\">Personal</option>\n      <option value=\"team\">Team</option>\n    </Select>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Select } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Select label=\"Workspace\" defaultValue=\"personal\" name=\"workspace\">\n        <option value=\"personal\">Personal</option>\n        <option value=\"team\">Team</option>\n      </Select>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Skeleton": {
+    "category": "Feedback",
+    "description": "A thoughtful pause before the content.",
+    "code": "import { Skeleton } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <div role=\"status\" aria-label=\"Loading profile\">\n      <Skeleton variant=\"circular\" />\n      <Skeleton width=\"65%\" />\n      <Skeleton variant=\"rectangular\" height={120} />\n    </div>\n  );\n}",
+    "accessibility": "Decorative aria-hidden placeholders. Name the loading region outside the skeleton. Shimmer and pulse stop for reduced motion.",
+    "state": null,
+    "slug": "skeleton",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Skeleton } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <div role=\"status\" aria-label=\"Loading profile\">\n        <Skeleton variant=\"circular\" />\n        <Skeleton width=\"65%\" />\n        <Skeleton variant=\"rectangular\" height={120} />\n      </div>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Slider": {
+    "category": "Forms",
+    "description": "Find just the right amount of light.",
+    "code": "import { Slider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Slider\n      label=\"Light intensity\"\n      defaultValue={64}\n      step={1}\n      formatValue={(value) => `${value}%`}\n      name=\"intensity\"\n    />\n  );\n}",
+    "accessibility": "Native range supports arrows, Home and End. Values are clamped and aligned to step; invalid/reversed bounds and nonfinite numbers normalize safely. React onChange receives a number. step=\"any\" permits continuous values.",
+    "state": "value / defaultValue / onChange (number)",
+    "slug": "slider",
+    "controlledCode": "import { useState } from \"react\";\nimport { Slider } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(64);\n  return <Slider label=\"Light intensity\" value={value} onChange={setValue} />;\n}",
+    "themedCode": "import { LuminescentProvider, Slider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Slider\n        label=\"Light intensity\"\n        defaultValue={64}\n        step={1}\n        formatValue={(value) => `${value}%`}\n        name=\"intensity\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "TextField": {
+    "category": "Forms",
+    "description": "An input with room for the details.",
+    "code": "import { TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <TextField\n      label=\"Email address\"\n      type=\"email\"\n      autoComplete=\"email\"\n      description=\"We will only send project updates.\"\n      placeholder=\"you@company.com\"\n      required\n    />\n  );\n}",
+    "accessibility": "Label, description and error are programmatically linked. Validation includes text, not just color. Native composition/autocomplete events pass through. passwordToggle provides a labeled reveal button; fieldSize controls appearance while size retains native input sizing.",
+    "state": "value / defaultValue / onChange (native event)",
+    "slug": "textfield",
+    "controlledCode": "import { useState } from \"react\";\nimport { TextField } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"\");\n  return (\n    <TextField\n      label=\"Name\"\n      value={value}\n      onChange={(event) => setValue(event.currentTarget.value)}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <TextField\n        label=\"Email address\"\n        type=\"email\"\n        autoComplete=\"email\"\n        description=\"We will only send project updates.\"\n        placeholder=\"you@company.com\"\n        required\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Timeline": {
+    "category": "Data display",
+    "description": "Make the sequence feel natural.",
+    "code": "import { Timeline } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Timeline\n      data={[\n        { title: \"Design\", content: \"Start with a clear purpose.\" },\n        { title: \"Build\", content: \"Bring the details to life.\" },\n      ]}\n    />\n  );\n}",
+    "accessibility": "An ordered list keeps all information available during SSR and reduced motion. One transform-only scroll beam uses the optional containerRef; no per-item scroll listeners or measurements are required.",
+    "state": null,
+    "slug": "timeline",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Timeline } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Timeline\n        data={[\n          { title: \"Design\", content: \"Start with a clear purpose.\" },\n          { title: \"Build\", content: \"Bring the details to life.\" },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Toggle": {
+    "category": "Forms",
+    "description": "An immediate change, clearly expressed.",
+    "code": "import { Toggle } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Toggle label=\"Enable notifications\" defaultChecked name=\"notifications\" />\n  );\n}",
+    "accessibility": "Button with switch semantics; Space/Enter and associated labels activate. Optional native checkbox participates in form submission/reset and required validation. readOnly preserves focus while preventing changes. onClick is composed and can preventDefault.",
+    "state": "checked / defaultChecked / onChange (boolean)",
+    "slug": "toggle",
+    "controlledCode": "import { useState } from \"react\";\nimport { Toggle } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return <Toggle label=\"Notifications\" checked={value} onChange={setValue} />;\n}",
+    "themedCode": "import { LuminescentProvider, Toggle } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Toggle\n        label=\"Enable notifications\"\n        defaultChecked\n        name=\"notifications\"\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Dialog": {
+    "category": "Overlays",
+    "description": "A focused space for important decisions.",
+    "code": "import { Dialog, Button, TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Dialog\n      trigger={<Button>Edit profile</Button>}\n      title=\"Edit profile\"\n      description=\"Make changes to your workspace identity.\"\n    >\n      <TextField label=\"Display name\" defaultValue=\"Alex Morgan\" />\n    </Dialog>\n  );\n}",
+    "accessibility": "Radix modal: traps Tab focus, makes background inert, closes on Escape/outside interaction and restores trigger focus. A required title names the dialog; description is optional. Supply a ref-forwarding trigger. Open programmatically only after a user action.",
+    "state": "open / defaultOpen / onOpenChange",
+    "slug": "dialog",
+    "controlledCode": "import { useState } from \"react\";\nimport { Dialog, Button } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <Dialog\n      title=\"Edit profile\"\n      open={value}\n      onOpenChange={setValue}\n      trigger={<Button>Edit profile</Button>}\n    >\n      Your project details.\n    </Dialog>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Dialog, Button, TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Dialog\n        trigger={<Button>Edit profile</Button>}\n        title=\"Edit profile\"\n        description=\"Make changes to your workspace identity.\"\n      >\n        <TextField label=\"Display name\" defaultValue=\"Alex Morgan\" />\n      </Dialog>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Tooltip": {
+    "category": "Overlays",
+    "description": "A helpful detail, right when it is needed.",
+    "code": "import { Tooltip, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Tooltip content=\"Save your current workspace\">\n      <Button variant=\"secondary\">Save workspace</Button>\n    </Tooltip>\n  );\n}",
+    "accessibility": "Opens on hover or keyboard focus; Escape dismisses. Content describes its trigger. Use Popover for interactive content and never put essential instructions only in a tooltip. Disabled native buttons do not receive focus; place explanations in nearby text.",
+    "state": "open / defaultOpen / onOpenChange",
+    "slug": "tooltip",
+    "controlledCode": "import { useState } from \"react\";\nimport { Tooltip, Button } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <Tooltip content=\"Save the project\" open={value} onOpenChange={setValue}>\n      <Button>Save</Button>\n    </Tooltip>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Tooltip, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Tooltip content=\"Save your current workspace\">\n        <Button variant=\"secondary\">Save workspace</Button>\n      </Tooltip>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Popover": {
+    "category": "Overlays",
+    "description": "Useful context, close to the action.",
+    "code": "import { Popover, Button, TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Popover\n      label=\"Display preferences\"\n      trigger={<Button variant=\"secondary\">Preferences</Button>}\n    >\n      <TextField label=\"Workspace name\" defaultValue=\"Studio\" />\n    </Popover>\n  );\n}",
+    "accessibility": "Radix nonmodal dialog with focus management, collision positioning, Escape/outside dismissal and trigger focus restoration. Required label names the surface. Content may contain native controls. Keep information essential to the page outside the popover.",
+    "state": "open / defaultOpen / onOpenChange",
+    "slug": "popover",
+    "controlledCode": "import { useState } from \"react\";\nimport { Popover, Button } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <Popover\n      label=\"Preferences\"\n      open={value}\n      onOpenChange={setValue}\n      trigger={<Button>Preferences</Button>}\n    >\n      Your preferences.\n    </Popover>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Popover, Button, TextField } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Popover\n        label=\"Display preferences\"\n        trigger={<Button variant=\"secondary\">Preferences</Button>}\n      >\n        <TextField label=\"Workspace name\" defaultValue=\"Studio\" />\n      </Popover>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "DropdownMenu": {
+    "category": "Overlays",
+    "description": "Actions that stay out of the way.",
+    "code": "import { DropdownMenu, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <DropdownMenu\n      trigger={<Button variant=\"secondary\">Project actions</Button>}\n      items={[\n        { id: \"duplicate\", label: \"Duplicate\", onSelect: () => {} },\n        { id: \"archive\", label: \"Archive\", disabled: true },\n        { id: \"delete\", label: \"Delete\", destructive: true },\n      ]}\n    />\n  );\n}",
+    "accessibility": "Radix menu: Enter/Space/ArrowDown opens, arrows and Home/End move, typing searches, Escape closes/restores focus. Disabled items are skipped. Use href for navigation and onSelect for actions. Does not expose nested/checkbox/radio menu items.",
+    "state": "open / defaultOpen / onOpenChange",
+    "slug": "dropdownmenu",
+    "controlledCode": "import { useState } from \"react\";\nimport { DropdownMenu, Button } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <DropdownMenu\n      open={value}\n      onOpenChange={setValue}\n      trigger={<Button>Actions</Button>}\n      items={[{ id: \"copy\", label: \"Copy\", onSelect: () => {} }]}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, DropdownMenu, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <DropdownMenu\n        trigger={<Button variant=\"secondary\">Project actions</Button>}\n        items={[\n          { id: \"duplicate\", label: \"Duplicate\", onSelect: () => {} },\n          { id: \"archive\", label: \"Archive\", disabled: true },\n          { id: \"delete\", label: \"Delete\", destructive: true },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Tabs": {
+    "category": "Navigation",
+    "description": "Related views with a complete keyboard model.",
+    "code": "import { Tabs } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Tabs\n      label=\"Project details\"\n      items={[\n        {\n          value: \"overview\",\n          label: \"Overview\",\n          content: \"Your project at a glance.\",\n        },\n        {\n          value: \"activity\",\n          label: \"Activity\",\n          content: \"The latest workspace activity.\",\n        },\n      ]}\n    />\n  );\n}",
+    "accessibility": "Radix tabs associate each tab and panel. Horizontal arrows or vertical Up/Down, Home/End and disabled skipping are supported. activationMode=\"manual\" waits for Enter/Space. Use a unique value for each item.",
+    "state": "value / defaultValue / onValueChange",
+    "slug": "tabs",
+    "controlledCode": "import { useState } from \"react\";\nimport { Tabs } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(\"overview\");\n  return (\n    <Tabs\n      label=\"Details\"\n      value={value}\n      onValueChange={setValue}\n      items={[\n        { value: \"overview\", label: \"Overview\", content: \"Overview\" },\n        { value: \"activity\", label: \"Activity\", content: \"Activity\" },\n      ]}\n    />\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Tabs } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Tabs\n        label=\"Project details\"\n        items={[\n          {\n            value: \"overview\",\n            label: \"Overview\",\n            content: \"Your project at a glance.\",\n          },\n          {\n            value: \"activity\",\n            label: \"Activity\",\n            content: \"The latest workspace activity.\",\n          },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Toast": {
+    "category": "Feedback",
+    "description": "Timely feedback, without interrupting.",
+    "code": "import { Toast, ToastProvider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <ToastProvider>\n      <Toast\n        defaultOpen\n        title=\"Project created\"\n        description=\"Your new workspace is ready.\"\n      />\n    </ToastProvider>\n  );\n}",
+    "accessibility": "Radix announcements, timed dismissal, hover/focus/window-blur pause and F8 viewport access. Toast actions require a meaningful altText. Mount one ToastProvider per themed tree; persist critical errors inline. Control open to show a toast in response to an action.",
+    "state": "open / defaultOpen / onOpenChange",
+    "slug": "toast",
+    "controlledCode": "import { useState } from \"react\";\nimport { Toast, Button, ToastProvider } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(false);\n  return (\n    <ToastProvider>\n      <Button onClick={() => setValue(true)}>Create project</Button>\n      <Toast open={value} onOpenChange={setValue} title=\"Project created\" />\n    </ToastProvider>\n  );\n}",
+    "themedCode": "import { LuminescentProvider, Toast, ToastProvider } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <ToastProvider>\n        <Toast\n          defaultOpen\n          title=\"Project created\"\n          description=\"Your new workspace is ready.\"\n        />\n      </ToastProvider>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Avatar": {
+    "category": "Data display",
+    "description": "A familiar face, with a useful fallback.",
+    "code": "import { Avatar, AvatarGroup } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <AvatarGroup label=\"Project team\" max={3}>\n      <Avatar alt=\"Alex Morgan\" />\n      <Avatar alt=\"Jamie Chen\" />\n      <Avatar alt=\"Sam Rivera\" />\n      <Avatar alt=\"Taylor Park\" />\n    </AvatarGroup>\n  );\n}",
+    "accessibility": "Required alt names the person; decorative images share the parent accessible name. Initials remain available if the image fails. AvatarGroup is labeled and announces overflow. No action is implied.",
+    "state": null,
+    "slug": "avatar",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Avatar, AvatarGroup } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <AvatarGroup label=\"Project team\" max={3}>\n        <Avatar alt=\"Alex Morgan\" />\n        <Avatar alt=\"Jamie Chen\" />\n        <Avatar alt=\"Sam Rivera\" />\n        <Avatar alt=\"Taylor Park\" />\n      </AvatarGroup>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Badge": {
+    "category": "Data display",
+    "description": "Status that can be read at a glance.",
+    "code": "import { Badge } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Badge variant=\"success\" dot>\n      Published\n    </Badge>\n  );\n}",
+    "accessibility": "Visible text communicates status; the optional dot is decorative. Static badges do not announce updates automatically. Use a parent live region only for meaningful live changes.",
+    "state": null,
+    "slug": "badge",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Badge } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Badge variant=\"success\" dot>\n        Published\n      </Badge>\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Spinner": {
+    "category": "Feedback",
+    "description": "A clear, compact loading signal.",
+    "code": "import { Spinner } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return <Spinner label=\"Loading projects\" />;\n}",
+    "accessibility": "A status region contains a descriptive, visually hidden label. Rotation stops for reduced motion; the status remains available.",
+    "state": null,
+    "slug": "spinner",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Spinner } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Spinner label=\"Loading projects\" />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "EmptyState": {
+    "category": "Feedback",
+    "description": "An empty space with a useful next step.",
+    "code": "import { EmptyState, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <EmptyState\n      title=\"No projects yet\"\n      description=\"Create your first project to bring the team together.\"\n      action={<Button>Create project</Button>}\n    />\n  );\n}",
+    "accessibility": "A semantic heading, descriptive text and optional real action. headingLevel integrates into the document outline. Icons are decorative. There is no automatic focus movement.",
+    "state": null,
+    "slug": "emptystate",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, EmptyState, Button } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <EmptyState\n        title=\"No projects yet\"\n        description=\"Create your first project to bring the team together.\"\n        action={<Button>Create project</Button>}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Breadcrumbs": {
+    "category": "Navigation",
+    "description": "A clear path back to the bigger picture.",
+    "code": "import { Breadcrumbs } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <Breadcrumbs\n      items={[\n        { label: \"Workspace\", href: \"/\" },\n        { label: \"Projects\", href: \"/docs/components\" },\n        { label: \"Luminescent\" },\n      ]}\n    />\n  );\n}",
+    "accessibility": "A named navigation landmark contains an ordered list. The last crumb exposes aria-current=\"page\"; separators are decorative. Native links retain standard browser behavior.",
+    "state": null,
+    "slug": "breadcrumbs",
+    "controlledCode": null,
+    "themedCode": "import { LuminescentProvider, Breadcrumbs } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Breadcrumbs\n        items={[\n          { label: \"Workspace\", href: \"/\" },\n          { label: \"Projects\", href: \"/docs/components\" },\n          { label: \"Luminescent\" },\n        ]}\n      />\n    </LuminescentProvider>\n  );\n}"
+  },
+  "Pagination": {
+    "category": "Navigation",
+    "description": "A smaller window into a larger collection.",
+    "code": "import { Pagination } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return <Pagination count={12} defaultPage={1} aria-label=\"Project pages\" />;\n}",
+    "accessibility": "Named navigation with native buttons and current-page state. Previous/next disable at boundaries. Zero pages render nothing. Large counts render a bounded set; update result announcements/focus in the consuming application.",
+    "state": "page / defaultPage / onPageChange",
+    "slug": "pagination",
+    "controlledCode": "import { useState } from \"react\";\nimport { Pagination } from \"luminescent\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState(1);\n  return <Pagination count={12} page={value} onPageChange={setValue} />;\n}",
+    "themedCode": "import { LuminescentProvider, Pagination } from \"luminescent\";\nimport \"luminescent/style.css\";\n\nexport function Example() {\n  return (\n    <LuminescentProvider theme=\"light\" accent=\"violet\" glow=\"subtle\">\n      <Pagination count={12} defaultPage={1} aria-label=\"Project pages\" />\n    </LuminescentProvider>\n  );\n}"
+  }
+}

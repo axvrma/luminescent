@@ -1,213 +1,115 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Sparkles, Box, Shield, Hexagon, Circle } from 'lucide-react';
 import { Divider } from './Divider';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '../lib/classes';
+import { glowStyle } from '../lib/glow';
+export { cn } from '../lib/utils';
 
 export interface FloatingMenuItem {
   id: string;
   label?: string;
   href?: string;
   icon?: React.ElementType;
+  disabled?: boolean;
 }
-
 export interface FloatingMenuProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   glowColor?: 'white' | 'peach';
   glowPosition?: 'top' | 'bottom';
   items?: FloatingMenuItem[];
   activeId?: string;
+  defaultActiveId?: string;
   onChange?: (id: string) => void;
   withDivider?: boolean;
 }
-
+const defaults: FloatingMenuItem[] = [
+  { id: '0', label: 'Discover', icon: Sparkles },
+  { id: '1', label: 'Components', icon: Box },
+  { id: '2', label: 'Security', icon: Shield },
+  { id: '3', label: 'Design', icon: Hexagon },
+  { id: '4', label: 'Settings', icon: Circle },
+];
 export const FloatingMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
-  ({ className, glowColor = 'peach', glowPosition = 'bottom', items, activeId: propActiveId, onChange, withDivider, ...props }, ref) => {
-    const [activeIcon, setActiveIcon] = useState<string | null>(propActiveId || (items ? items[0]?.id : '0'));
-    const id = React.useId();
-
-    useEffect(() => {
-      if (propActiveId !== undefined) {
-        setActiveIcon(propActiveId);
-      }
-    }, [propActiveId]);
-
-    const defaultItems: FloatingMenuItem[] = [
-      { id: '0', icon: Sparkles },
-      { id: '1', icon: Box },
-      { id: '2', icon: Shield },
-      { id: '3', icon: Hexagon },
-      { id: '4', icon: Circle },
-    ];
-
-    const displayItems = items || defaultItems;
-
-    // Map 'peach' to #FFCBA4 and 'white' to #FFFFFF
-    const glowHex = glowColor === 'peach' ? '#FFCBA4' : '#FFFFFF';
-    const glowRgba = glowColor === 'peach' ? '255, 203, 164' : '255, 255, 255';
-
+  (
+    {
+      className,
+      glowColor = 'peach',
+      glowPosition = 'bottom',
+      items = defaults,
+      activeId,
+      defaultActiveId,
+      onChange,
+      withDivider,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalActive, setInternalActive] = React.useState(defaultActiveId ?? items[0]?.id);
+    const selected = activeId ?? internalActive;
     return (
-      <div className={cn("relative group flex flex-col items-center", className)} ref={ref} {...props}>
-        {/* The Menu Pill */}
-        <div className={cn(
-          "relative z-10 flex items-center gap-6 px-6 py-3 rounded-full",
-          "bg-[#131313] backdrop-blur-xl border border-white/5 shadow-2xl",
-          "transition-all duration-300 ease-out"
-        )}>
-          {/* Top inner rim highlight */}
-          <div className="absolute inset-0 rounded-full border-[0.5px] border-white/10 pointer-events-none" />
-          
-          {/* Edge very bright light line */}
-          <div 
-            className={cn(
-              "absolute left-1/2 -translate-x-1/2 w-[70%] h-[1px] pointer-events-none",
-              glowPosition === 'bottom' ? "bottom-0" : "top-0"
-            )}
-            style={{
-              background: `linear-gradient(90deg, transparent, ${glowHex}, transparent)`,
-              opacity: 1,
-              boxShadow: glowPosition === 'bottom' 
-                ? `0 2px 12px 1px rgba(${glowRgba}, 0.8), 0 0 20px 2px rgba(${glowRgba}, 0.6)`
-                : `0 -2px 12px 1px rgba(${glowRgba}, 0.8), 0 0 20px 2px rgba(${glowRgba}, 0.6)`
-            }}
-          />
-
-          {displayItems.map((item) => {
-            const isActive = activeIcon === item.id;
+      <div
+        {...props}
+        ref={ref}
+        className={cn('lumi-floating-menu', className)}
+        role={props.role ?? 'group'}
+        aria-label={props['aria-label'] ?? 'Quick navigation'}
+        data-glow-position={glowPosition}
+        style={glowStyle(undefined, {
+          ...(glowColor === 'white' ? { '--lumi-color': '220, 220, 230' } : {}),
+          ...style,
+        } as React.CSSProperties)}
+      >
+        <div className="lumi-floating-menu-items">
+          {items.map((item) => {
             const Icon = item.icon;
-            
+            const selectedItem = selected === item.id;
             const content = (
               <>
-                {isActive && (
-                  <motion.div
-                    layoutId={`activeIndicator-${id}`}
-                    className="absolute inset-0 rounded-full"
-                    transition={{
-                      type: "spring",
-                      stiffness: 450,
-                      damping: 35,
-                      mass: 0.8
-                    }}
-                  >
-                    {/* Outer intense ambient glow (spread) */}
-                    <div className={cn(
-                      "absolute left-1/2 -translate-x-1/2 w-[180%] h-16 bg-[#ffaa66]/30 blur-[20px] rounded-full pointer-events-none",
-                      glowPosition === 'bottom' ? "-bottom-6" : "-top-6"
-                    )} />
-
-                    {/* Core indicator background */}
-                    <div className={cn(
-                      "absolute inset-0 rounded-full",
-                      glowPosition === 'bottom' 
-                        ? "bg-gradient-to-b from-[#eeb996] to-[#dea178]" 
-                        : "bg-gradient-to-t from-[#eeb996] to-[#dea178]"
-                    )} />
-                    
-                    {/* Mesh Texture Overlay */}
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
-                      style={{
-                        backgroundImage: `repeating-linear-gradient(45deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px), repeating-linear-gradient(-45deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px)`
-                      }}
-                    />
-
-                    {/* Inner highlight (bevel) */}
-                    <div className="absolute inset-0 rounded-full border border-white/30" />
-                    
-                    {/* Inner shadow (bevel) */}
-                    <div className={cn(
-                      "absolute inset-0 rounded-full",
-                      glowPosition === 'bottom'
-                        ? "shadow-[inset_0_-2px_4px_rgba(0,0,0,0.2)]"
-                        : "shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]"
-                    )} />
-                    
-                    {/* Center Intense Spotlight */}
-                    <div className={cn(
-                      "absolute left-1/2 -translate-x-1/2 w-[120%] h-8 bg-[#ffddaa]/60 blur-[12px] rounded-full pointer-events-none",
-                      glowPosition === 'bottom' ? "-bottom-3" : "-top-3"
-                    )} />
-                    <div className={cn(
-                      "absolute left-1/2 -translate-x-1/2 w-[80%] h-4 bg-[#fffce0] blur-[8px] rounded-full pointer-events-none",
-                      glowPosition === 'bottom' ? "bottom-0" : "top-0"
-                    )} />
-                    <div className={cn(
-                      "absolute left-1/2 -translate-x-1/2 w-[40%] h-[2px] bg-white blur-[1px] rounded-full pointer-events-none",
-                      glowPosition === 'bottom' ? "bottom-0" : "top-0"
-                    )} />
-                  </motion.div>
-                )}
-                {Icon && <Icon className={cn("w-5 h-5 z-10 relative", item.label && "mr-2")} />}
-                {item.label && <span className="z-10 relative text-sm font-medium">{item.label}</span>}
+                {Icon && <Icon aria-hidden="true" width={18} height={18} />}
+                {item.label && <span>{item.label}</span>}
               </>
             );
-
-            const btnClass = cn(
-              "relative flex items-center justify-center h-10 rounded-full transition-colors duration-300 outline-none",
-              item.label ? "px-4" : "w-10",
-              isActive ? "text-[#1a0f0a]" : "text-neutral-500 hover:text-neutral-300"
-            );
-
-            const handleClick = (e: React.MouseEvent) => {
-              if (item.href) {
-                // If it's a link, we let the default behavior happen or handle it via a wrapper.
-                // We just update state.
-              } else {
-                e.preventDefault();
-              }
-              if (propActiveId === undefined) {
-                setActiveIcon(item.id);
-              }
+            const onClick = () => {
+              if (item.disabled) return;
+              if (activeId === undefined) setInternalActive(item.id);
               onChange?.(item.id);
             };
-
-            if (item.href) {
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  onClick={handleClick}
-                  className={btnClass}
-                  style={{ WebkitTapHighlightColor: "transparent" }}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                >
-                  {content}
-                </a>
-              );
-            }
-
-            return (
-              <motion.button
+            return item.href ? (
+              <a
                 key={item.id}
-                onClick={handleClick}
-                className={btnClass}
-                style={{ WebkitTapHighlightColor: "transparent" }}
+                className="lumi-menu-action"
+                role="link"
+                href={item.disabled ? undefined : item.href}
+                aria-disabled={item.disabled || undefined}
+                tabIndex={item.disabled ? -1 : undefined}
+                aria-label={item.label ?? `Item ${item.id}`}
+                aria-current={selectedItem ? 'page' : undefined}
+                data-active={selectedItem}
+                onClick={onClick}
               >
                 {content}
-              </motion.button>
+              </a>
+            ) : (
+              <button
+                key={item.id}
+                type="button"
+                className="lumi-menu-action"
+                aria-label={item.label ?? `Item ${item.id}`}
+                aria-pressed={selectedItem}
+                data-active={selectedItem}
+                disabled={item.disabled}
+                onClick={onClick}
+              >
+                {content}
+              </button>
             );
           })}
         </div>
-
-        {/* Divider with down illumination */}
         {withDivider && (
-          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-full max-w-sm pointer-events-none">
-             <Divider 
-               orientation="horizontal" 
-               glowDirection="bottom" 
-               intensity="high" 
-               color={glowColor === 'peach' ? '#FFCBA4' : '#FFFFFF'} 
-             />
-          </div>
+          <Divider orientation="horizontal" glowDirection={glowPosition} intensity="low" />
         )}
       </div>
     );
-  }
+  },
 );
-
-FloatingMenu.displayName = "FloatingMenu";
+FloatingMenu.displayName = 'FloatingMenu';

@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": { "types": ["vite/client"] },
+  "include": ["src/index.ts", "src/components/**/*.tsx", "src/lib/**/*.ts"],
+  "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx"]
+}

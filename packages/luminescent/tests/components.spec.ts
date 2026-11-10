@@ -7,11 +7,16 @@ test('checkbox supports keyboard, mixed state, and disabled state', async ({ pag
   await lighting.focus();
   await page.keyboard.press('Space');
   await expect(lighting).not.toBeChecked();
-  await expect(page.getByRole('checkbox', { name: 'Some projects selected' })).toHaveJSProperty('indeterminate', true);
+  await expect(page.getByRole('checkbox', { name: 'Some projects selected' })).toHaveJSProperty(
+    'indeterminate',
+    true,
+  );
   await expect(page.getByRole('checkbox', { name: 'Unavailable option' })).toBeDisabled();
 });
 
-test('select changes its controlled palette and keeps native disabled behavior', async ({ page }) => {
+test('select changes its controlled palette and keeps native disabled behavior', async ({
+  page,
+}) => {
   await page.goto('/docs/components/select');
   const palette = page.getByRole('combobox', { name: 'Glow palette' });
   await palette.selectOption('violet');
@@ -42,7 +47,9 @@ test('rating uses arrow navigation and exposes a read-only summary', async ({ pa
   await expect(group.getByRole('radio', { name: '3 stars', exact: true })).toBeChecked();
   await expect(page.getByText('3 out of 5 stars')).toBeVisible();
   await expect(page.getByRole('img', { name: 'Community rating: 5 of 5' })).toBeVisible();
-  await expect(page.getByRole('radiogroup', { name: 'Unavailable rating' }).getByRole('radio').first()).toBeDisabled();
+  await expect(
+    page.getByRole('radiogroup', { name: 'Unavailable rating' }).getByRole('radio').first(),
+  ).toBeDisabled();
 });
 
 test('chips can be removed and restored', async ({ page }) => {
@@ -72,9 +79,13 @@ test('alerts expose severity and allow dismissal', async ({ page }) => {
   await expect(page.getByRole('status').filter({ hasText: 'Changes saved' })).toBeVisible();
   await expect(page.getByRole('alert').filter({ hasText: 'Connection interrupted' })).toBeVisible();
   await page.getByRole('button', { name: 'Dismiss alert' }).click();
-  await expect(page.getByText('Changes saved', { exact: true })).toHaveCount(0);
+  await expect(
+    page.locator('.workbench-preview').getByText('Changes saved', { exact: true }),
+  ).toHaveCount(0);
   await page.getByRole('button', { name: 'Show alert again' }).click();
-  await expect(page.getByText('Changes saved', { exact: true })).toBeVisible();
+  await expect(
+    page.locator('.workbench-preview').getByText('Changes saved', { exact: true }),
+  ).toBeVisible();
 });
 
 test('progress updates its accessible value and supports indeterminate state', async ({ page }) => {
@@ -85,8 +96,13 @@ test('progress updates its accessible value and supports indeterminate state', a
   await slider.focus();
   await page.keyboard.press('End');
   await expect(progress).toHaveAttribute('aria-valuenow', '100');
-  await expect(page.getByRole('progressbar', { name: 'Upload progress' })).toHaveAttribute('aria-valuenow', '100');
-  await expect(page.getByRole('progressbar', { name: 'Syncing assets' })).not.toHaveAttribute('aria-valuenow');
+  await expect(page.getByRole('progressbar', { name: 'Upload progress' })).toHaveAttribute(
+    'aria-valuenow',
+    '100',
+  );
+  await expect(page.getByRole('progressbar', { name: 'Syncing assets' })).not.toHaveAttribute(
+    'aria-valuenow',
+  );
 });
 
 test('skeletons stop their shimmer for reduced motion', async ({ page }) => {
@@ -94,7 +110,9 @@ test('skeletons stop their shimmer for reduced motion', async ({ page }) => {
   await page.goto('/docs/components/skeleton');
   const skeleton = page.locator('.lumi-skeleton').first();
   await expect(skeleton).toHaveAttribute('aria-hidden', 'true');
-  expect(await skeleton.evaluate(node => getComputedStyle(node, '::after').animationName)).toBe('none');
+  expect(await skeleton.evaluate((node) => getComputedStyle(node, '::after').animationName)).toBe(
+    'none',
+  );
   await expect(page.getByRole('status', { name: 'Loading profile' })).toBeVisible();
 });
 
@@ -104,13 +122,19 @@ test('card content remains interactive', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Keep creating ✨' })).toBeVisible();
 });
 
-test('gallery and homepage show the new components without overflow or browser errors', async ({ page }) => {
+test('gallery and homepage show the new components without overflow or browser errors', async ({
+  page,
+}) => {
   const errors: string[] = [];
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', (error) => errors.push(error.message));
   for (const route of ['/docs/examples/component-gallery', '/']) {
     await page.goto(route, { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('slider', { name: route === '/' ? 'Glow intensity' : 'Light intensity' })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await expect(
+      page.getByRole('slider', { name: route === '/' ? 'Glow intensity' : 'Light intensity' }),
+    ).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    ).toBe(true);
   }
   expect(errors).toEqual([]);
 });

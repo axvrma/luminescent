@@ -1,0 +1,1537 @@
+{
+  "Accordion": [
+    {
+      "interface": "AccordionProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "expanded",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "defaultExpanded",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "onChange",
+      "type": "(expanded: boolean) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AccordionProps",
+      "name": "headingLevel",
+      "type": "2 | 3 | 4 | 5 | 6",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Alert": [
+    {
+      "interface": "AlertProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AlertProps",
+      "name": "severity",
+      "type": "'info' | 'success' | 'warning' | 'error'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AlertProps",
+      "name": "onClose",
+      "type": "() => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AlertProps",
+      "name": "closeLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Avatar": [
+    {
+      "interface": "AvatarProps",
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AvatarProps",
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "AvatarProps",
+      "name": "fallback",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AvatarProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AvatarGroupProps",
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "AvatarGroupProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Badge": [
+    {
+      "interface": "BadgeProps",
+      "name": "variant",
+      "type": "'neutral' | 'accent' | 'success' | 'warning' | 'danger' | 'info'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "BadgeProps",
+      "name": "size",
+      "type": "'sm' | 'md'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "BadgeProps",
+      "name": "dot",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Breadcrumbs": [
+    {
+      "interface": "BreadcrumbsProps",
+      "name": "items",
+      "type": "BreadcrumbItem[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "BreadcrumbsProps",
+      "name": "separator",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Button": [
+    {
+      "interface": "ButtonProps",
+      "name": "variant",
+      "type": "'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "children",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "loadingLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "startIcon",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "endIcon",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ButtonProps",
+      "name": "glow",
+      "type": "GlowIntensity",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Card": [
+    {
+      "interface": "CardProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CardProps",
+      "name": "spotlight",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Checkbox": [
+    {
+      "interface": "CheckboxProps",
+      "name": "label",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CheckboxProps",
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CheckboxProps",
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CheckboxProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CheckboxProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Chip": [
+    {
+      "interface": "ChipProps",
+      "name": "children",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "variant",
+      "type": "'soft' | 'outlined'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "size",
+      "type": "'sm' | 'md'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "icon",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "onDelete",
+      "type": "() => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "deleteLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ChipProps",
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "CodeBlock": [
+    {
+      "interface": "CodeBlockProps",
+      "name": "code",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CodeBlockProps",
+      "name": "language",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CodeBlockProps",
+      "name": "lang",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CodeBlockProps",
+      "name": "glowVariant",
+      "type": "'peach' | 'comet' | 'light'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "CodeBlockProps",
+      "name": "showLineNumbers",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "ContainerTextFlip": [
+    {
+      "interface": "ContainerTextFlipProps",
+      "name": "words",
+      "type": "string[]",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ContainerTextFlipProps",
+      "name": "interval",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ContainerTextFlipProps",
+      "name": "textClassName",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ContainerTextFlipProps",
+      "name": "animationDuration",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ContainerTextFlipProps",
+      "name": "variant",
+      "type": "'primary' | 'secondary'",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Dialog": [
+    {
+      "interface": "DialogProps",
+      "name": "trigger",
+      "type": "React.ReactElement",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "closeLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DialogProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Divider": [
+    {
+      "interface": "DividerProps",
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DividerProps",
+      "name": "intensity",
+      "type": "'low' | 'medium' | 'high'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DividerProps",
+      "name": "glowDirection",
+      "type": "'left' | 'right' | 'top' | 'bottom' | 'both'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DividerProps",
+      "name": "color",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "DropdownMenu": [
+    {
+      "interface": "DropdownMenuProps",
+      "name": "trigger",
+      "type": "React.ReactElement",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "items",
+      "type": "DropdownMenuItem[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "DropdownMenuProps",
+      "name": "onAction",
+      "type": "(id: string) => void",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "EmptyState": [
+    {
+      "interface": "EmptyStateProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "EmptyStateProps",
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "EmptyStateProps",
+      "name": "icon",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "EmptyStateProps",
+      "name": "action",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "EmptyStateProps",
+      "name": "headingLevel",
+      "type": "2 | 3 | 4",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "FloatingMenu": [
+    {
+      "interface": "FloatingMenuProps",
+      "name": "glowColor",
+      "type": "'white' | 'peach'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "glowPosition",
+      "type": "'top' | 'bottom'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "items",
+      "type": "FloatingMenuItem[]",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "activeId",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "defaultActiveId",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "onChange",
+      "type": "(id: string) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "FloatingMenuProps",
+      "name": "withDivider",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "ImagesBadge": [
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "text",
+      "type": "string",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "images",
+      "type": "string[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "target",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "textPosition",
+      "type": "'top' | 'bottom' | 'left' | 'right'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "baseWidth",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "imageSize",
+      "type": "{ width: number; height: number }",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ImagesBadgeProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "LuminescentProvider": [
+    {
+      "interface": "LuminescentProviderProps",
+      "name": "theme",
+      "type": "'dark' | 'light' | 'system'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "LuminescentProviderProps",
+      "name": "accent",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "LuminescentProviderProps",
+      "name": "glow",
+      "type": "GlowIntensity",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "LuminescentProviderProps",
+      "name": "motion",
+      "type": "'system' | 'reduced'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "LuminescentProviderProps",
+      "name": "style",
+      "type": "LuminescentStyle",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Pagination": [
+    {
+      "interface": "PaginationProps",
+      "name": "count",
+      "type": "number",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "PaginationProps",
+      "name": "page",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PaginationProps",
+      "name": "defaultPage",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PaginationProps",
+      "name": "onPageChange",
+      "type": "(page: number) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PaginationProps",
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PaginationProps",
+      "name": "siblingCount",
+      "type": "number",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Popover": [
+    {
+      "interface": "PopoverProps",
+      "name": "trigger",
+      "type": "React.ReactElement",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "PopoverProps",
+      "name": "label",
+      "type": "string",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "PopoverProps",
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PopoverProps",
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PopoverProps",
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "PopoverProps",
+      "name": "closeLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Progress": [
+    {
+      "interface": "ProgressProps",
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ProgressProps",
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ProgressProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ProgressProps",
+      "name": "showValue",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ProgressProps",
+      "name": "variant",
+      "type": "'linear' | 'circular'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ProgressProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "RadioGroup": [
+    {
+      "interface": "RadioGroupProps",
+      "name": "options",
+      "type": "RadioOption[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "onChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "form",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "layout",
+      "type": "'vertical' | 'horizontal'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RadioGroupProps",
+      "name": "indicatorAnimation",
+      "type": "'slide' | 'fade'",
+      "required": false,
+      "description": "Preserved appearance option; transitions respect reduced motion."
+    }
+  ],
+  "Rating": [
+    {
+      "interface": "RatingProps",
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "defaultValue",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "onChange",
+      "type": "(value: number) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "RatingProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "ScreenReveal": [
+    {
+      "interface": "ScreenRevealProps",
+      "name": "isOpen",
+      "type": "boolean",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ScreenRevealProps",
+      "name": "frontContent",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ScreenRevealProps",
+      "name": "revealContent",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ScreenRevealProps",
+      "name": "revealDirection",
+      "type": "RevealDirection",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ScreenRevealProps",
+      "name": "revealAmount",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ScreenRevealProps",
+      "name": "frontCornerRadius",
+      "type": "number",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "SegmentedControl": [
+    {
+      "interface": "SegmentedControlProps",
+      "name": "tabs",
+      "type": "string[]",
+      "required": true,
+      "description": "Legacy name for selection options, unrelated to tab panels."
+    },
+    {
+      "interface": "SegmentedControlProps",
+      "name": "defaultActiveTab",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SegmentedControlProps",
+      "name": "activeTab",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Select": [
+    {
+      "interface": "SelectProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SelectProps",
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SelectProps",
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SelectProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SelectProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SelectProps",
+      "name": "containerClassName",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Skeleton": [
+    {
+      "interface": "SkeletonProps",
+      "name": "variant",
+      "type": "'text' | 'rectangular' | 'circular'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SkeletonProps",
+      "name": "width",
+      "type": "React.CSSProperties['width']",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SkeletonProps",
+      "name": "height",
+      "type": "React.CSSProperties['height']",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SkeletonProps",
+      "name": "animation",
+      "type": "'shimmer' | 'pulse' | 'none'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SkeletonProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Slider": [
+    {
+      "interface": "SliderProps",
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "defaultValue",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "onChange",
+      "type": "(value: number) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "showValue",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "formatValue",
+      "type": "(value: number) => string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SliderProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Spinner": [
+    {
+      "interface": "SpinnerProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "SpinnerProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Tabs": [
+    {
+      "interface": "TabsProps",
+      "name": "items",
+      "type": "TabItem[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "TabsProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "TextField": [
+    {
+      "interface": "TextFieldProps",
+      "name": "containerClassName",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "glowVariant",
+      "type": "'peach' | 'comet' | 'light'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "label",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "error",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "prefix",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "suffix",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "fieldSize",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TextFieldProps",
+      "name": "passwordToggle",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Timeline": [
+    {
+      "interface": "TimelineProps",
+      "name": "data",
+      "type": "TimelineEntry[]",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "TimelineProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TimelineProps",
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TimelineProps",
+      "name": "containerRef",
+      "type": "React.RefObject<HTMLElement | null>",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Toast": [
+    {
+      "interface": "ToastProviderProps",
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToastProps",
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "ToastProps",
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToastProps",
+      "name": "action",
+      "type": "{ label: string; altText: string; onClick: () => void }",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToastProps",
+      "name": "closeLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Toggle": [
+    {
+      "interface": "ToggleProps",
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "onChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "requiredMessage",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "glowColor",
+      "type": "GlowColor",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "ToggleProps",
+      "name": "label",
+      "type": "React.ReactNode",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "Tooltip": [
+    {
+      "interface": "TooltipProps",
+      "name": "children",
+      "type": "React.ReactElement",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "TooltipProps",
+      "name": "content",
+      "type": "React.ReactNode",
+      "required": true,
+      "description": ""
+    },
+    {
+      "interface": "TooltipProps",
+      "name": "delayDuration",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TooltipProps",
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TooltipProps",
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "interface": "TooltipProps",
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "controls.test": [],
+  "primitives.test": []
+}

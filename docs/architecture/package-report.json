@@ -1,0 +1,25 @@
+{
+  "formats": [
+    "esm",
+    "cjs"
+  ],
+  "consumers": [
+    {
+      "react": "18.3.1",
+      "exports": 40,
+      "ssr": "pass",
+      "declarations": "pass",
+      "treeShaking": "pass"
+    },
+    {
+      "react": "19.2.4",
+      "exports": 40,
+      "ssr": "pass",
+      "declarations": "pass",
+      "treeShaking": "pass"
+    }
+  ],
+  "cssBytes": 41828,
+  "badgeBundleBytes": 717,
+  "packedFiles": 93
+}

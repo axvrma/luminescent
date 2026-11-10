@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FloatingMenu } from './FloatingMenu';
 
 const meta = {
@@ -21,7 +21,7 @@ export const Default: Story = {
     <div className="flex flex-col items-center justify-center w-[600px] h-[500px] relative rounded-xl overflow-hidden">
       <FloatingMenu {...args} />
     </div>
-  )
+  ),
 };
 
 export const WhiteGlow: Story = {
@@ -32,7 +32,7 @@ export const WhiteGlow: Story = {
     <div className="flex flex-col items-center justify-center w-[600px] h-[500px] relative rounded-xl overflow-hidden">
       <FloatingMenu {...args} />
     </div>
-  )
+  ),
 };
 
 export const TopGlow: Story = {
@@ -44,5 +44,7 @@ export const TopGlow: Story = {
     <div className="flex flex-col items-center justify-center w-[600px] h-[500px] relative rounded-xl overflow-hidden">
       <FloatingMenu {...args} />
     </div>
-  )
+  ),
 };
+
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };

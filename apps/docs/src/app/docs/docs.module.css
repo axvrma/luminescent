@@ -32,7 +32,8 @@
   opacity: 0.9;
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
   opacity: 0.9;
@@ -56,7 +57,6 @@
   overflow-x: auto;
   margin-bottom: 1.5rem;
 }
-
 
 .prose pre code {
   background: transparent;
@@ -102,7 +102,8 @@
   white-space: nowrap;
 }
 
-.prose th, .prose td {
+.prose th,
+.prose td {
   border-bottom: 1px solid var(--header-border);
   padding: 1rem;
   text-align: left;
@@ -119,4 +120,54 @@
 
 .prose tbody tr:hover {
   background-color: var(--card-bg);
+}
+.prose {
+  color: #ddd6df;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.prose h1 {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 16px;
+}
+.prose h2 {
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  border-bottom-color: #ffffff12;
+}
+.prose h3 {
+  font-size: 17px;
+}
+.prose p,
+.prose li {
+  color: #b2a9ba;
+}
+.prose a {
+  color: #efbb96;
+}
+.prose .lead {
+  font-size: 15px;
+  color: #a39aaa;
+  margin-bottom: 35px;
+}
+.prose :global(.lumi-code) {
+  margin: 22px 0;
+}
+.prose :global(.lumi-code) pre,
+.prose :global(.lumi-code) code {
+  margin: 0;
+  opacity: 1;
+  font-size: 11px;
+  color: inherit;
+}
+.prose :global(.lumi-code) code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.prose :global(.lumi-code) button {
+  font-size: 10px;
 }

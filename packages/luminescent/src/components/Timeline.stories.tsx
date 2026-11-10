@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Timeline } from './Timeline';
 import React from 'react';
 
@@ -16,34 +16,34 @@ type Story = StoryObj<typeof meta>;
 
 const dummyData = [
   {
-    title: "Early 2024",
+    title: 'Early 2024',
     content: (
       <div>
-        <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-          Released the first stable version of Luminescent UI. Bringing smooth framer-motion animations
-          and dark-mode native components to developers worldwide.
+        <p className="text-[color:var(--lumi-muted)] text-sm md:text-base leading-relaxed">
+          Released the first stable version of Luminescent UI. Bringing smooth framer-motion
+          animations and dark-mode native components to developers worldwide.
         </p>
       </div>
     ),
   },
   {
-    title: "Late 2023",
+    title: 'Late 2023',
     content: (
       <div>
-        <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-          Designed the core design system and created the primary tokens for glassmorphism
-          and gradient glows. We settled on OKLCH colors for vibrant transitions.
+        <p className="text-[color:var(--lumi-muted)] text-sm md:text-base leading-relaxed">
+          Designed the core design system and created the primary tokens for glassmorphism and
+          gradient glows. We settled on OKLCH colors for vibrant transitions.
         </p>
       </div>
     ),
   },
   {
-    title: "Mid 2023",
+    title: 'Mid 2023',
     content: (
       <div>
-        <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-          The idea for Luminescent UI was born. A UI library that focuses entirely on
-          rich, dark-mode aesthetics out of the box.
+        <p className="text-[color:var(--lumi-muted)] text-sm md:text-base leading-relaxed">
+          The idea for Luminescent UI was born. A UI library that focuses entirely on rich,
+          dark-mode aesthetics out of the box.
         </p>
       </div>
     ),
@@ -52,13 +52,16 @@ const dummyData = [
 
 export const Default: Story = {
   args: {
-    title: "Timeline of Innovation",
-    description: "Follow along the journey of building the next generation of modern component libraries.",
+    title: 'Timeline of Innovation',
+    description:
+      'Follow along the journey of building the next generation of modern component libraries.',
     data: dummyData,
   },
   render: (args) => (
-    <div className="bg-[#0f0f11] min-h-screen text-white">
+    <div className="bg-[color:var(--lumi-bg)] min-h-screen text-[color:var(--lumi-text)]">
       <Timeline {...args} />
     </div>
   ),
 };
+
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };

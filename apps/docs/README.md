@@ -1,18 +1,12 @@
 # Luminescent documentation
 
-This Next.js app is part of the Luminescent npm workspace. It depends on the local package at `../../packages/luminescent`.
+Run commands from the monorepo root. The site consumes the local built luminescent package.
 
-Run commands from the repository root:
+- npm run dev: docs server plus library watcher.
+- npm run docs:api: regenerate public API references and the trusted Markdown manifest after editing types/content.
+- npm run build:docs: build the library and statically render the portal.
+- npm run test:components: production desktop/mobile interactions and accessibility scans.
 
-```bash
-nvm use
-npm install
-npm run dev             # Watch the library and run the docs on localhost:3000
-npm run build:docs      # Build the local library, then this app
-npm start               # Serve the production build
-npm run lint:docs
-```
+Component descriptions, examples and accessibility contracts are typed in src/lib/catalog.ts and catalog-data.json; TypeScript prop references are generated from the library. The component route renders the shared workbench and preview implementations. Guide/example Markdown lives in content/docs. Local search indexes component metadata and the documented navigation routes. The playground transforms known example strings into JSX without evaluation.
 
-Edit pages in `src/app`, Markdown content in `content/docs`, and shared components in `../../packages/luminescent/src/components`.
-
-Next.js needs the local library's `dist` output. Root development and build commands create it automatically. See the root README for installation, Storybook, publishing, and deployment instructions.
+Import the library stylesheet only in the root layout. Application reset/layout styles belong to globals.css and are not shipped to library consumers. Dark/light/system choices in previews are scoped with LuminescentProvider, including portalled overlays. Set NEXT_PUBLIC_SITE_URL to the real production origin before deploying.

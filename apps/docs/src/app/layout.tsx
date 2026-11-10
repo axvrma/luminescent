@@ -1,34 +1,39 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata } from 'next';
 import 'luminescent/style.css';
-import "./globals.css";
-
-import { Footer } from "../components/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
-
+import './globals.css';
+import { LuminescentProvider } from 'luminescent';
+import { SiteHeader } from '../components/SiteHeader';
+import { Footer } from '../components/Footer';
 export const metadata: Metadata = {
-  title: "Luminescent UI | Modern React Components",
-  description: "Premium, highly-polished, and visually stunning React UI components tailored specifically for modern dark-mode applications.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  title: {
+    default: 'Luminescent — A little light for your next interface',
+    template: '%s · Luminescent',
+  },
+  description:
+    'Thoughtfully crafted React components with luminous surfaces, accessible interactions, and scoped themes. Beautiful by default. Engineered for production.',
+  openGraph: {
+    title: 'Luminescent — A little light. A lot of possibility.',
+    description: 'Luminous React components. Thoughtful interactions. Your next interface.',
+    images: ['/opengraph-image'],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image' },
+  robots: { index: true, follow: true },
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            {children}
-          </div>
+    <html lang="en">
+      <body>
+        <LuminescentProvider theme="dark" className="site-shell">
+          <a href="#main-content" className="skip-link">
+            Skip to content
+          </a>
+          <SiteHeader />
+          <div className="site-content">{children}</div>
           <Footer />
-        </div>
+        </LuminescentProvider>
       </body>
-      <GoogleAnalytics gaId="G-YGFYRJGYFW" />
     </html>
   );
 }

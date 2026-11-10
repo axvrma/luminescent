@@ -1,9 +1,6 @@
-"use client";
-
-import React, { useState, useRef } from 'react';
-import { Highlight, themes } from 'prism-react-renderer';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '../lib/utils';
+import React from 'react';
+import { Highlight } from 'prism-react-renderer';
+import { cn } from '../lib/classes';
 
 export interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   code?: string;
@@ -12,186 +9,105 @@ export interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   glowVariant?: 'peach' | 'comet' | 'light';
   showLineNumbers?: boolean;
 }
-
+const theme = {
+  plain: { color: 'var(--lumi-text)', backgroundColor: 'transparent' },
+  styles: [
+    { types: ['comment', 'prolog'], style: { color: 'var(--lumi-muted)' } },
+    { types: ['keyword', 'tag', 'operator'], style: { color: 'var(--lumi-code-keyword)' } },
+    { types: ['string', 'attr-value'], style: { color: 'var(--lumi-code-string)' } },
+    { types: ['function', 'class-name', 'attr-name'], style: { color: 'var(--lumi-accent-text)' } },
+  ],
+};
 export const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
-  ({ className, code, language, lang, glowVariant = 'peach', showLineNumbers = false, children, ...props }, ref) => {
-    const activeLanguage = (language || lang || 'tsx') as any;
-    const [copied, setCopied] = useState(false);
-    const preRef = useRef<HTMLPreElement>(null);
-
-    const handleCopy = async () => {
-      let textToCopy = code || '';
-      if (!textToCopy && preRef.current) {
-        textToCopy = preRef.current.innerText;
+  (
+    {
+      className,
+      code,
+      language,
+      lang,
+      glowVariant = 'peach',
+      showLineNumbers = false,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const activeLanguage = (language || lang || 'tsx').toLowerCase();
+    const [status, setStatus] = React.useState('');
+    const preRef = React.useRef<HTMLPreElement>(null);
+    const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    const mounted = React.useRef(true);
+    React.useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+        clearTimeout(timeout.current);
+      };
+    }, []);
+    async function copy() {
+      clearTimeout(timeout.current);
+      try {
+        await navigator.clipboard.writeText(code ?? preRef.current?.textContent ?? '');
+        if (mounted.current) setStatus('Copied');
+      } catch {
+        if (mounted.current) setStatus('Unable to copy. Select and copy the code manually.');
       }
-      await navigator.clipboard.writeText(textToCopy);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    };
-
-    const variants = {
-      peach: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,170,102,1) 320deg, #fffce0 360deg)`,
-      comet: `conic-gradient(from var(--angle), transparent 0deg 180deg, rgba(249,115,22,1) 240deg, rgba(168,85,247,1) 300deg, rgba(59,130,246,1) 340deg, white 360deg)`,
-      light: `conic-gradient(from var(--angle), transparent 0deg 220deg, rgba(255,255,255,1) 320deg, white 360deg)`
-    };
-
-    const gradientBorder = variants[glowVariant];
-
+      if (mounted.current) timeout.current = setTimeout(() => setStatus(''), 3000);
+    }
     return (
-      <div 
-        ref={ref}
-        className={cn("relative group w-full max-w-3xl", className)}
+      <div
         {...props}
+        ref={ref}
+        className={cn('lumi-code lumi-surface', className)}
+        data-variant={glowVariant}
       >
-        <style dangerouslySetInnerHTML={{ __html: `
-          @property --angle {
-            syntax: "<angle>";
-            inherits: true;
-            initial-value: 0deg;
-          }
-          @keyframes spin-border {
-            to { --angle: 360deg; }
-          }
-        ` }} />
-
-        {/* Unclipped Ambient Aura Container (50px padding, matches rounded-3xl [24px] inner radius, so outer is 74px) */}
-        <div 
-          className="absolute -inset-[50px] pointer-events-none rounded-[74px]"
-          style={{
-            padding: '50px',
-            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            WebkitMaskComposite: 'xor',
-            maskComposite: 'exclude',
-          }}
+        <div className="lumi-code-header">
+          <span>{activeLanguage}</span>
+          <button type="button" className="lumi-code-copy" onClick={copy} aria-label="Copy code">
+            {status === 'Copied' ? 'Copied ✓' : 'Copy'}
+          </button>
+        </div>
+        <div
+          className="lumi-code-scroll"
+          tabIndex={0}
+          role="group"
+          aria-label={`${activeLanguage} code`}
         >
-          {/* Core Glow (Tight, bright atmospheric bleed) */}
-          <div 
-            className="absolute inset-[50px] rounded-3xl opacity-60 group-hover:opacity-100 blur-[8px] transition-opacity duration-700"
-            style={{
-              background: gradientBorder,
-              animation: 'spin-border 4s linear infinite',
-            }}
-          />
-
-          {/* Massive Ambient Aura (Free-flowing, wide atmospheric bleed) */}
-          <div 
-            className="absolute inset-[50px] rounded-3xl opacity-40 group-hover:opacity-90 blur-[32px] transition-opacity duration-1000"
-            style={{
-              background: gradientBorder,
-              animation: 'spin-border 4s linear infinite',
-            }}
-          />
-        </div>
-
-        {/* Main Code Block Container */}
-        <div className="relative rounded-3xl bg-[#16181e]/90 backdrop-blur-xl border border-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.6)] overflow-hidden">
-          
-          {/* Header Bar */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.05] bg-black/20">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5 mr-4">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-              </div>
-              <span className="text-xs font-medium text-zinc-400 font-mono lowercase tracking-wider">
-                {activeLanguage}
-              </span>
-            </div>
-            
-            <button
-              onClick={handleCopy}
-              className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
-              aria-label="Copy code"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {copied ? (
-                  <motion.svg
-                    key="check"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="14" 
-                    height="14" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    className="text-emerald-400"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </motion.svg>
-                ) : (
-                  <motion.svg
-                    key="copy"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="14" 
-                    height="14" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  >
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </motion.svg>
-                )}
-              </AnimatePresence>
-            </button>
-          </div>
-
-          {/* Code Content */}
-          <div className="p-5 overflow-x-auto text-[13px] sm:text-sm custom-scrollbar">
-            {code ? (
-              <Highlight theme={themes.vsDark} code={code.trim()} language={activeLanguage}>
-                {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                  <pre ref={preRef} className={cn(className, "m-0 bg-transparent")} style={{ ...style, backgroundColor: 'transparent' }}>
-                    {tokens.map((line, i) => {
-                      const { key: lineKey, ...lineProps } = getLineProps({ line, key: i });
-                      return (
-                        <div key={lineKey as React.Key} {...lineProps} className="table-row">
-                          {showLineNumbers && (
-                            <span className="table-cell text-right select-none opacity-30 pr-4 w-8 font-mono text-xs">
-                              {i + 1}
-                            </span>
-                          )}
-                          <span className="table-cell">
-                            {line.map((token, key) => {
-                              const { key: tokenKey, ...tokenProps } = getTokenProps({ token, key });
-                              return (
-                                <span key={tokenKey as React.Key} {...tokenProps} />
-                              );
-                            })}
+          {code !== undefined && code.length <= 20000 ? (
+            <Highlight theme={theme} code={code} language={activeLanguage}>
+              {({ tokens, getLineProps, getTokenProps }) => (
+                <pre ref={preRef}>
+                  <code>
+                    {tokens.map((line, index) => (
+                      <span {...getLineProps({ line })} key={index} className="lumi-code-line">
+                        {showLineNumbers && (
+                          <span className="lumi-code-number" aria-hidden="true">
+                            {index + 1}
                           </span>
-                        </div>
-                      );
-                    })}
-                  </pre>
-                )}
-              </Highlight>
-            ) : (
-              <pre ref={preRef} className="m-0 bg-transparent text-zinc-100 font-mono">
-                {children}
-              </pre>
-            )}
-          </div>
-          
-          {/* Inner ambient shadows for depth */}
-          <div className="absolute inset-0 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] pointer-events-none" />
+                        )}
+                        <span>
+                          {line.map((token, tokenIndex) => (
+                            <span {...getTokenProps({ token })} key={tokenIndex} />
+                          ))}
+                        </span>
+                        {'\n'}
+                      </span>
+                    ))}
+                  </code>
+                </pre>
+              )}
+            </Highlight>
+          ) : (
+            <pre ref={preRef}>
+              <code>{code ?? children}</code>
+            </pre>
+          )}
         </div>
+        <span role="status" className="lumi-visually-hidden">
+          {status}
+        </span>
       </div>
     );
-  }
+  },
 );
-
 CodeBlock.displayName = 'CodeBlock';

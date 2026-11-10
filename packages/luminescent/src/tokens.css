@@ -1,0 +1,224 @@
+/* Framework-independent tokens. Only namespaced variables are declared globally. */
+:root,
+.lumi-theme {
+  --lumi-bg: #0b0c10;
+  --lumi-surface: #13151c;
+  --lumi-surface-raised: #1c1f29;
+  --lumi-text: #f1f1f5;
+  --lumi-muted: #a5a8b8;
+  --lumi-border: #3c4050;
+  --lumi-separator: #292d39;
+  --lumi-color: 255, 170, 102;
+  --lumi-accent: rgb(var(--lumi-color));
+  --lumi-secondary: #c09bff;
+  --lumi-on-accent: #24180f;
+  --lumi-success: 110, 231, 183;
+  --lumi-warning: 255, 195, 110;
+  --lumi-info: 125, 190, 255;
+  --lumi-danger: 255, 132, 148;
+  --lumi-focus: rgb(var(--lumi-color));
+  --lumi-accent-mix: 100%;
+  --lumi-accent-text: initial;
+  --lumi-space-1: 0.25rem;
+  --lumi-space-2: 0.5rem;
+  --lumi-space-3: 0.75rem;
+  --lumi-space-4: 1rem;
+  --lumi-space-5: 1.25rem;
+  --lumi-space-6: 1.5rem;
+  --lumi-space-8: 2rem;
+  --lumi-space-12: 3rem;
+  --lumi-space-16: 4rem;
+  --lumi-radius-sm: 0.375rem;
+  --lumi-radius-md: 0.75rem;
+  --lumi-radius-lg: 1.25rem;
+  --lumi-radius-full: 9999px;
+  --lumi-control-sm: 2rem;
+  --lumi-control-md: 2.75rem;
+  --lumi-control-lg: 3.25rem;
+  --lumi-icon-sm: 1rem;
+  --lumi-icon-md: 1.25rem;
+  --lumi-content-width: 72rem;
+  --lumi-font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --lumi-font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --lumi-text-xs: 0.75rem;
+  --lumi-text-sm: 0.875rem;
+  --lumi-text-md: 1rem;
+  --lumi-text-lg: 1.25rem;
+  --lumi-text-xl: 1.75rem;
+  --lumi-weight-normal: 400;
+  --lumi-weight-medium: 500;
+  --lumi-weight-bold: 650;
+  --lumi-leading: 1.6;
+  --lumi-tracking: -0.02em;
+  --lumi-shadow-sm: 0 2px 8px #0002;
+  --lumi-shadow-lg: 0 20px 64px #0005;
+  --lumi-glow-strength: 1;
+  --lumi-glow-sm: initial;
+  --lumi-glow-lg: initial;
+  --lumi-blur: 12px;
+  --lumi-glass-opacity: 0.85;
+  --lumi-border-light: rgba(var(--lumi-color), 0.4);
+  --lumi-duration-fast: 120ms;
+  --lumi-duration: 220ms;
+  --lumi-duration-slow: 400ms;
+  --lumi-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --lumi-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --lumi-scheme: dark;
+}
+[data-lumi-theme='light'] {
+  --lumi-bg: #faf8f6;
+  --lumi-surface: #fff;
+  --lumi-surface-raised: #f2eeea;
+  --lumi-text: #24212b;
+  --lumi-muted: #625c6b;
+  --lumi-border: #b9b1bc;
+  --lumi-separator: #ded8df;
+  --lumi-success: 19, 117, 78;
+  --lumi-warning: 139, 82, 0;
+  --lumi-info: 35, 95, 174;
+  --lumi-danger: 177, 35, 61;
+  --lumi-accent-mix: 30%;
+  --lumi-focus: #8b461e;
+  --lumi-scheme: light;
+  --lumi-shadow-lg: 0 20px 64px #40303520;
+}
+@media (prefers-color-scheme: light) {
+  [data-lumi-theme='system'] {
+    --lumi-bg: #faf8f6;
+    --lumi-surface: #fff;
+    --lumi-surface-raised: #f2eeea;
+    --lumi-text: #24212b;
+    --lumi-muted: #625c6b;
+    --lumi-border: #b9b1bc;
+    --lumi-separator: #ded8df;
+    --lumi-success: 19, 117, 78;
+    --lumi-warning: 139, 82, 0;
+    --lumi-info: 35, 95, 174;
+    --lumi-danger: 177, 35, 61;
+    --lumi-accent-mix: 30%;
+    --lumi-focus: #8b461e;
+    --lumi-scheme: light;
+    --lumi-shadow-lg: 0 20px 64px #40303520;
+  }
+}
+.lumi-theme {
+  background: var(--lumi-bg);
+  color: var(--lumi-text);
+  color-scheme: var(--lumi-scheme);
+  font-family: var(--lumi-font);
+}
+[data-lumi-glow='none'] {
+  --lumi-glow-sm: none;
+  --lumi-glow-lg: none;
+  --lumi-glow-strength: 0;
+}
+[data-lumi-glow='subtle'] {
+  --lumi-glow-strength: 0.4;
+}
+[data-lumi-glow='normal'] {
+  --lumi-glow-strength: 1;
+}
+[data-lumi-glow='intense'] {
+  --lumi-glow-strength: 1.6;
+}
+:where([class^='lumi-'], [class*=' lumi-']) {
+  box-sizing: border-box;
+}
+:where(
+  .lumi-button,
+  .lumi-input,
+  .lumi-select,
+  .lumi-toggle,
+  .lumi-segment,
+  .lumi-menu-action,
+  .lumi-icon-button,
+  .lumi-tab,
+  .lumi-dropdown-item
+):focus-visible {
+  outline: 2px solid var(--lumi-focus);
+  outline-offset: 4px;
+}
+.lumi-glow {
+  box-shadow: var(
+    --lumi-glow-sm,
+    0 0 12px rgba(var(--lumi-color), calc(0.16 * var(--lumi-glow-strength)))
+  );
+  transition:
+    box-shadow var(--lumi-duration) var(--lumi-ease),
+    border-color var(--lumi-duration);
+}
+.lumi-glow:is(:hover, :focus-within) {
+  box-shadow: var(
+    --lumi-glow-lg,
+    0 6px 28px rgba(var(--lumi-color), calc(0.25 * var(--lumi-glow-strength)))
+  );
+}
+.lumi-glow:active {
+  box-shadow: var(
+    --lumi-glow-sm,
+    0 0 12px rgba(var(--lumi-color), calc(0.16 * var(--lumi-glow-strength)))
+  );
+}
+.lumi-glow[data-disabled='true'],
+.lumi-glow:disabled {
+  box-shadow: none;
+}
+@keyframes lumi-border-pulse {
+  50% {
+    opacity: calc(0.6 * var(--lumi-glow-strength));
+  }
+}
+.lumi-border-animated::before {
+  animation: lumi-border-pulse 3s ease-in-out infinite;
+}
+[data-lumi-motion='reduced'],
+[data-lumi-motion='reduced'] * {
+  --lumi-duration-fast: 0ms;
+  --lumi-duration: 0ms;
+  --lumi-duration-slow: 0ms;
+}
+[data-lumi-motion='reduced'] :where([class^='lumi-'], [class*=' lumi-']),
+[data-lumi-motion='reduced'] :where([class^='lumi-'], [class*=' lumi-'])::before,
+[data-lumi-motion='reduced'] :where([class^='lumi-'], [class*=' lumi-'])::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([class^='lumi-'], [class*=' lumi-']),
+  :where([class^='lumi-'], [class*=' lumi-'])::before,
+  :where([class^='lumi-'], [class*=' lumi-'])::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (forced-colors: active) {
+  :where(
+    .lumi-button,
+    .lumi-toggle,
+    .lumi-checkbox-box,
+    .lumi-surface,
+    .lumi-segment,
+    .lumi-popover,
+    .lumi-dialog,
+    .lumi-dropdown
+  ) {
+    border: 1px solid ButtonText;
+    box-shadow: none;
+  }
+  .lumi-toggle[aria-checked='true'],
+  .lumi-segment:has(:checked),
+  .lumi-button[data-variant='primary'] {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+@media (prefers-contrast: more) {
+  .lumi-theme {
+    --lumi-border: var(--lumi-muted);
+    --lumi-glow-strength: 0;
+  }
+}
+
+/* Derived colors and shadows resolve their defaults where used. This keeps local
+   accents/intensity live while allowing inherited recipe overrides from a theme. */

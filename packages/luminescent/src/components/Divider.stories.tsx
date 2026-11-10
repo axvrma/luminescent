@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Divider } from './Divider';
 
 const meta = {
@@ -39,3 +39,6 @@ export const SymmetricalBoth: Story = {
     color: '#ffaa66', // Peach
   },
 };
+
+export const Default: Story = { args: { orientation: 'horizontal' } };
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SegmentedControl } from './SegmentedControl';
 
 const meta = {
@@ -18,7 +18,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    'aria-label': 'View',
     tabs: ['Schedule a call', 'Contact us'],
     defaultActiveTab: 'Schedule a call',
   },
 };
+
+export const LightTheme: Story = { ...Default, globals: { theme: 'light' } };

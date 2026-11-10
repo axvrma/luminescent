@@ -1,0 +1,7 @@
+node_modules
+dist
+.next
+storybook-static
+package-lock.json
+apps/docs/src/lib/*.generated.json
+apps/docs/content
