@@ -13,6 +13,13 @@ Luminescent is built with an obsession for detail, focusing on smooth micro-anim
 
 ## 📦 Components Included
 
+* **Checkbox, Select, Slider, Rating:** Native form controls with illuminated focus states, glowing indicators, and keyboard support.
+* **Chip:** Soft or outlined tags with four glow palettes and an optional removal action.
+* **Card:** Dark glass surfaces with lit edges and a cursor-following spotlight.
+* **Accordion:** Accessible expandable details with controlled or uncontrolled state.
+* **Alert:** Info, success, warning, and error feedback with optional dismissal.
+* **Progress:** Determinate and indeterminate linear beams and circular rings.
+* **Skeleton:** Text, rectangular, and circular placeholders with motion-aware shimmer or pulse.
 * **TextField:** Features a hyper-smooth, animated "single stream" light gradient that actively orbits the input border while focused.
 * **SegmentedControl:** A pill-shaped layout control featuring a beautifully animated, sliding active indicator that snaps seamlessly between options.
 * **RadioGroup:** Offers both vertical and horizontal layouts, supporting customizable light variants (slide or fade) to indicate active states.
@@ -25,6 +32,8 @@ Luminescent is built with an obsession for detail, focusing on smooth micro-anim
 - **Tailwind CSS** (v3.4)
 - **Framer Motion** (for complex fluid layout animations)
 - **Vite** & **Storybook** (for component development and preview)
+
+Import `luminescent/style.css` once at your application's root. The extended components support `glowColor="peach"`, `"violet"`, `"blue"`, or `"mint"`; alerts derive their palette from severity. All new continuous animations respect `prefers-reduced-motion`.
 
 ## 📖 Viewing the Playground
 

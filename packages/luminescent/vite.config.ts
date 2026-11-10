@@ -19,6 +19,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, 'src/index.ts'),
       name: 'Luminescent',
+      cssFileName: 'style',
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
     },

@@ -37,10 +37,13 @@ npm run build:lib      # Build only the publishable library
 npm run build:docs     # Build the library and docs
 npm run build-storybook
 npm run lint           # Lint both workspaces
+npm run test:components # Browser checks on desktop and mobile (requires Playwright Chromium)
 npm start              # Serve the production docs build
 ```
 
 The library output is `packages/luminescent/dist`, the docs output is `apps/docs/.next`, and Storybook outputs to `packages/luminescent/storybook-static`.
+
+The component gallery at `/docs/examples/component-gallery` covers Checkbox, Select, Slider, Rating, Chip, Card, Accordion, Alert, Progress, and Skeleton. Each also has individual documentation and Storybook stories. To install the browser for interaction checks, run `npx playwright install chromium` once. The checks start their own docs server on port 3100; when a docs server is already running, reuse it with `LUMINESCENT_TEST_URL=http://localhost:3000 npm run test:components` (adjust the port as needed).
 
 ## Publishing the library
 

@@ -6,14 +6,24 @@ import { usePathname } from 'next/navigation';
 import styles from '../app/docs/layout.module.css';
 
 const COMPONENTS = [
+  'Accordion',
+  'Alert',
   'Button',
+  'Card',
+  'Checkbox',
+  'Chip',
   'ContainerTextFlip',
   'Divider',
   'FloatingMenu',
   'ImagesBadge',
+  'Progress',
   'RadioGroup',
+  'Rating',
   'ScreenReveal',
+  'Select',
   'SegmentedControl',
+  'Skeleton',
+  'Slider',
   'TextField',
   'Timeline',
   'Toggle',
@@ -70,6 +80,7 @@ export function DocsSidebar() {
           <div className={styles.navGroup}>
             <h4 className={styles.navTitle}>Examples</h4>
             <Link href="/docs/examples/all-in-one" className={styles.navLink}>All-in-One</Link>
+            <Link href="/docs/examples/component-gallery" className={styles.navLink}>Component Gallery</Link>
           </div>
         </nav>
       </aside>

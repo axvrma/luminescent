@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button, Divider, SegmentedControl, ImagesBadge } from './luminescent-client';
 import { InteractiveIntegrationForm } from './InteractiveIntegrationForm';
+import { ExtendedComponentsShowcase } from './ExtendedComponents';
 import styles from '../app/page.module.css';
 
 interface HomeClientProps {
@@ -125,6 +126,8 @@ export function HomeClient({ installCode, configureCode, buildCode }: HomeClient
           </div>
           <InteractiveIntegrationForm view="desktop" />
         </section>
+
+        <ExtendedComponentsShowcase />
 
         {/* Interactive Tabs Showcase */}
         <section style={{ maxWidth: '800px', margin: '0 auto 4rem', width: '100%', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10, position: 'relative' }}>

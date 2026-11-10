@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import 'luminescent/style.css';
 import "./globals.css";
 
 import { Footer } from "../components/Footer";

@@ -21,6 +21,7 @@
     "lint": "npm run lint --workspaces --if-present",
     "lint:lib": "npm run lint --workspace luminescent",
     "lint:docs": "npm run lint --workspace luminescent-docs",
+    "test:components": "npm run build:lib && playwright test",
     "preview": "npm run preview --workspace luminescent",
     "storybook": "npm run storybook --workspace luminescent",
     "build-storybook": "npm run build-storybook --workspace luminescent",

@@ -6,8 +6,11 @@ import { notFound } from 'next/navigation';
 import styles from '../docs.module.css';
 import { Button, Divider, FloatingMenu, RadioGroup, ScreenReveal, SegmentedControl, TextField, CodeBlock, Toggle, ContainerTextFlip, ImagesBadge, Timeline } from '../../../components/luminescent-client';
 import { InteractiveIntegrationForm } from '../../../components/InteractiveIntegrationForm';
+import { ComponentDemo, ComponentGallery } from '../../../components/ExtendedComponents';
 
 const components = {
+  ComponentDemo,
+  ComponentGallery,
   InteractiveIntegrationForm,
   Button,
   Divider,
