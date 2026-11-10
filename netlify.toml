@@ -1,6 +1,6 @@
 [build]
   command = "npm run build-storybook"
-  publish = "storybook-static"
+  publish = "packages/luminescent/storybook-static"
 
 # Optional: Set cache control headers for performance
 [[headers]]

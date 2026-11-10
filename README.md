@@ -1,45 +1,62 @@
 # Luminescent ✨
 
-A collection of premium, highly-polished, and visually stunning React UI components tailored specifically for modern dark-mode applications.
+Luminescent's React component library, Storybook playground, and Next.js documentation site live in one npm workspace. The documentation uses the local `luminescent` package instead of downloading a published release.
 
-Luminescent is built with an obsession for detail, focusing on smooth micro-animations, mathematically precise glowing effects, and rich, vibrant aesthetics that instantly elevate any user interface.
+## Projects
 
-## 🚀 Features
+- `packages/luminescent` — publishable React component library, Vite playground, and Storybook stories.
+- `apps/docs` — Next.js website, Markdown documentation, examples, and public assets imported from `luminescent-docs`.
 
-- **Mathematical Precision:** Utilizes advanced modern CSS techniques (`@property`, `padding-box` clipping) to create flawless, infinitely scalable glowing borders without bleed or stretch.
-- **Dynamic Interactions:** Components feature fluid sliding indicators, discrete fades, and magnetic hover effects powered by Framer Motion.
-- **Premium Aesthetics:** Curated dark-mode color palettes featuring rich blacks (`#050505`), glassmorphism, and vibrant gradient blooms.
-- **Drop-in Ready:** Built with React and Tailwind CSS. Just copy the component and its dependencies into your codebase.
+The library keeps its npm package name (`luminescent`), version, and public exports. The root package is private. Both projects share the root `package-lock.json`; run dependency installation from this directory.
 
-## 📦 Components Included
+## Getting started
 
-* **TextField:** Features a hyper-smooth, animated "single stream" light gradient that actively orbits the input border while focused.
-* **SegmentedControl:** A pill-shaped layout control featuring a beautifully animated, sliding active indicator that snaps seamlessly between options.
-* **RadioGroup:** Offers both vertical and horizontal layouts, supporting customizable light variants (slide or fade) to indicate active states.
-* **Button:** Highly stylized primary and secondary buttons featuring peachy, ambient blooms and deeply interactive hover states.
-* **Divider:** A gorgeous visual separator that emits a soft, fading glow from the edges or center to break up content beautifully.
-
-## 🛠️ Technology Stack
-
-- **React** (v19)
-- **Tailwind CSS** (v3.4)
-- **Framer Motion** (for complex fluid layout animations)
-- **Vite** & **Storybook** (for component development and preview)
-
-## 📖 Viewing the Playground
-
-Luminescent uses Storybook to showcase all components in an interactive, dark-themed playground.
+Use Node.js 24 (or Node.js 22.13+) and npm >=10:
 
 ```bash
-# Install dependencies
+nvm use
 npm install
-
-# Start the interactive Storybook playground
-npm run storybook
+npm run dev
 ```
 
-## 🌐 Deployment
+The docs run at http://localhost:3000. `npm run dev` first builds the library, then watches it and runs Next.js together, so component edits rebuild the local package used by the docs.
 
-This project includes a zero-configuration `netlify.toml` file. To deploy the interactive Storybook playground to Netlify:
-1. Connect this repository to your Netlify dashboard.
-2. Netlify will automatically build the static Storybook using `npm run build-storybook` and serve it from the `storybook-static` directory.
+Other development commands:
+
+```bash
+npm run dev:docs        # Build the library and run only Next.js
+npm run dev:playground  # Run the Vite playground
+npm run storybook      # Run Storybook on port 6006
+```
+
+## Build and validation
+
+```bash
+npm run build          # Build the library, then the docs
+npm run build:lib      # Build only the publishable library
+npm run build:docs     # Build the library and docs
+npm run build-storybook
+npm run lint           # Lint both workspaces
+npm start              # Serve the production docs build
+```
+
+The library output is `packages/luminescent/dist`, the docs output is `apps/docs/.next`, and Storybook outputs to `packages/luminescent/storybook-static`.
+
+## Publishing the library
+
+```bash
+npm pack --workspace luminescent --dry-run
+npm publish --workspace luminescent
+```
+
+The library's `prepack` script builds it before packaging. Only its `dist` directory and npm's standard metadata files are published; the docs remain private.
+
+## Deployment
+
+The root `netlify.toml` builds and serves Storybook from `packages/luminescent/storybook-static`.
+
+For the Next.js site, configure the hosting project's root directory as `apps/docs`, install the npm workspaces from the repository root (`cd ../.. && npm ci`), and build with `cd ../.. && npm run build:docs`. Keep the default Next.js output directory. The docs configuration traces files from the workspace root so deployments include the local library and Markdown content.
+
+## Documentation source
+
+The former `luminescent-docs` project is included under `apps/docs`, including its content, images, and support files. The original sibling checkout is retained as a backup and is no longer needed to build or run this workspace.

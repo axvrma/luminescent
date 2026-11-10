@@ -25,3 +25,13 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Next.js documentation app
+.next/
+out/
+.vercel/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+.env*
+!.env.example
